@@ -2,7 +2,9 @@ import { createBrowserRouter } from "react-router-dom";
 
 import Root from "./Root";
 import { ErrorBoundary } from "./components";
-import { Home } from "./pages";
+import { Home, NowPlaying, UpComing } from "./pages";
+import { loader as homeLoader } from "./pages/home/loader";
+import { queryClient } from "./utils/queryClient";
 
 const Router = createBrowserRouter([
   {
@@ -13,14 +15,15 @@ const Router = createBrowserRouter([
       {
         index: true,
         element: <Home />,
+        loader: homeLoader(queryClient),
       },
       {
         path: "coming-soon",
-        element: <Home />,
+        element: <UpComing />,
       },
       {
         path: "now-playing",
-        element: <Home />,
+        element: <NowPlaying />,
       },
     ],
   },

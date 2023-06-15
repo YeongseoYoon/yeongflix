@@ -18,7 +18,7 @@ export async function getNowPlayingMovies() {
     const data = await (
       await fetch(`${BASE_URL}/movie/now_playing?api_key=${VITE_API_KEY}`)
     ).json();
-    return data;
+    return data.results;
   } catch (error) {
     throw error;
   }
@@ -29,7 +29,7 @@ export async function getUpcomingMovies() {
     const data = await (
       await fetch(`${BASE_URL}/movie/upcoming?api_key=${VITE_API_KEY}`)
     ).json();
-    return data;
+    return data.results;
   } catch (error) {
     throw error;
   }

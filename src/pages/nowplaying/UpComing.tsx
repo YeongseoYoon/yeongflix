@@ -3,19 +3,13 @@ import { useQuery } from "@tanstack/react-query";
 import { AnimatePresence } from "framer-motion";
 import { useNavigate, useMatch, PathMatch } from "react-router-dom";
 
-import { IMovie } from "../types";
-import makeImagePath from "../utils/makeImagePath";
-import { homeQuery } from "./home/loader";
-import {
-  Box,
-  Info,
-  Wrapper,
-  boxVariants,
-  infoVariants,
-} from "./home/Home.styled";
+import { IMovie } from "../../types";
+import makeImagePath from "../../utils/makeImagePath";
+import { upComingQuery } from "./loader";
+import { Box, Info, Wrapper, boxVariants, infoVariants } from "../styled";
 
-function NowPlaying() {
-  const { data: movies } = useQuery<IMovie[]>(homeQuery());
+function UpComing() {
+  const { data: movies } = useQuery<IMovie[]>(upComingQuery());
   const [isLeaving, setIsLeaving] = useState(false);
   const navigate = useNavigate();
   const toggleLeaving = () => setIsLeaving((prev) => !prev);
@@ -48,4 +42,4 @@ function NowPlaying() {
   );
 }
 
-export default NowPlaying;
+export default UpComing;

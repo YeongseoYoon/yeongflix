@@ -1,10 +1,10 @@
-import { getPopularMovies } from "../../apis/api";
+import { getNowPlayingMovies } from "../../apis/api";
 import { QueryClient } from "@tanstack/react-query";
 
-export const homeQuery = () => ({
-  queryKey: ["popular"],
+export const nowPlayingQuery = () => ({
+  queryKey: ["nowplaying"],
   queryFn: async () => {
-    const movies = await getPopularMovies();
+    const movies = await getNowPlayingMovies();
     if (!movies) {
       throw new Response("", {
         status: 404,
@@ -16,7 +16,7 @@ export const homeQuery = () => ({
 });
 
 export const loader = (queryClient: QueryClient) => async () => {
-  const query = homeQuery();
+  const query = nowPlayingQuery();
   return (
     queryClient.getQueryData(query.queryKey) ??
     (await queryClient.fetchQuery(query))

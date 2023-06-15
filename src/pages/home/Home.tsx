@@ -6,7 +6,7 @@ import { useNavigate, useMatch, PathMatch } from "react-router-dom";
 import { IMovie } from "../../types";
 import makeImagePath from "../../utils/makeImagePath";
 import { homeQuery } from "./loader";
-import { Box, Info, Wrapper, boxVariants, infoVariants } from "./Home.styled";
+import { Box, Info, Wrapper, boxVariants, infoVariants } from "../styled";
 
 function Home() {
   const { data: movies } = useQuery<IMovie[]>(homeQuery());

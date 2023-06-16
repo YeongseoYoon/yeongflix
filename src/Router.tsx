@@ -20,6 +20,10 @@ const Router = createBrowserRouter([
         loader: homeLoader(queryClient),
       },
       {
+        path: "movie/:movieId",
+        element: <Home />,
+      },
+      {
         path: "coming-soon",
         element: <UpComing />,
         loader: upComingLoader(queryClient),

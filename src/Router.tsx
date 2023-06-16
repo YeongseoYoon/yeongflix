@@ -24,14 +24,22 @@ const Router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: "coming-soon",
+        path: "upcoming",
         element: <UpComing />,
         loader: upComingLoader(queryClient),
+      },
+      {
+        path: "upcoming/movie/:movieId",
+        element: <UpComing />,
       },
       {
         path: "now-playing",
         element: <NowPlaying />,
         loader: nowPlayingLoader(queryClient),
+      },
+      {
+        path: "now-playing/movie/:movieId",
+        element: <NowPlaying />,
       },
     ],
   },

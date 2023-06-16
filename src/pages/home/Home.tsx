@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { AnimatePresence, useScroll } from "framer-motion";
 import { useNavigate, useMatch, PathMatch } from "react-router-dom";
@@ -12,19 +11,18 @@ import {
   BigOverview,
   BigTitle,
   Box,
-  Info,
   Overlay,
+  Title,
   Wrapper,
   boxVariants,
-  infoVariants,
 } from "../styled";
 
 function Home() {
   const { data: movies } = useQuery<IMovie[]>(homeQuery());
-  const [isLeaving, setIsLeaving] = useState(false);
+
   const navigate = useNavigate();
   const moviePathMatch: PathMatch<string> | null = useMatch("/movie/:movieId");
-  const toggleLeaving = () => setIsLeaving((prev) => !prev);
+
   const onBoxClicked = (movieId: number) => {
     navigate(`/movie/${movieId}`);
   };
@@ -36,7 +34,7 @@ function Home() {
   return (
     <>
       <Wrapper>
-        <AnimatePresence onExitComplete={toggleLeaving}>
+        <AnimatePresence>
           {movies?.map((movie, index) => (
             <Box
               layoutId={movie.id + ""}
@@ -49,12 +47,9 @@ function Home() {
               }}
               transition={{
                 duration: 0.3,
-                ease: [0, 0.71, 0.2, 1.01],
                 scale: {
                   type: "spring",
-                  damping: 5,
                   stiffness: 100,
-                  restDelta: 0.001,
                 },
                 delay: index * 0.1,
               }}
@@ -62,9 +57,7 @@ function Home() {
               onClick={() => onBoxClicked(movie.id)}
               bgPhoto={makeImagePath(movie.poster_path, "w500")}
             >
-              <Info variants={infoVariants}>
-                <h4>{movie.title}</h4>
-              </Info>
+              <Title>{movie.title}</Title>
             </Box>
           ))}
         </AnimatePresence>

@@ -17,6 +17,7 @@ export const Box = styled(motion.div)<{ bgPhoto: string }>`
   background-position: center center;
   height: 400px;
   font-size: 66px;
+  position: relative;
   &:first-child {
     transform-origin: center left;
   }
@@ -25,17 +26,14 @@ export const Box = styled(motion.div)<{ bgPhoto: string }>`
   }
 `;
 
-export const Info = styled(motion.div)`
-  padding: 10px;
-  background-color: ${(props) => props.theme.black.lighter};
-  opacity: 0;
+export const Title = styled.h4`
+  text-align: center;
+  font-size: 18px;
   position: absolute;
-  width: 100%;
   bottom: 0;
-  h4 {
-    text-align: center;
-    font-size: 18px;
-  }
+  left: 0;
+  right: 0;
+  margin: 0;
 `;
 
 export const Overlay = styled(motion.div)`
@@ -100,17 +98,6 @@ export const boxVariants = {
     transition: {
       delay: 0.3,
       duaration: 0.1,
-      type: "tween",
-    },
-  },
-};
-
-export const infoVariants = {
-  hover: {
-    opacity: 1,
-    transition: {
-      delay: 0.5,
-      duration: 0.1,
       type: "tween",
     },
   },

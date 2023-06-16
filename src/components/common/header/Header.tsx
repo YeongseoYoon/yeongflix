@@ -21,7 +21,7 @@ function Header() {
   const { scrollY } = useScroll();
   const popularMatch: PathMatch<string> | null = useMatch("/");
   const nowPlayingMatch: PathMatch<string> | null = useMatch("/now-playing");
-  const comingSoonMatch: PathMatch<string> | null = useMatch("/coming-soon");
+  const upComingMatch: PathMatch<string> | null = useMatch("/upcoming");
 
   const navAnimation = useAnimation();
 
@@ -50,8 +50,8 @@ function Header() {
             </Link>
           </Item>
           <Item>
-            <Link to="coming-soon">
-              COMING SOON {comingSoonMatch && <Circle layoutId="circle" />}
+            <Link to="upcoming">
+              UP COMING {upComingMatch && <Circle layoutId="circle" />}
             </Link>
           </Item>
           <Item>

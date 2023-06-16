@@ -15,6 +15,7 @@ export const Box = styled(motion.div)<{ bgPhoto: string }>`
   background-image: url(${(props) => props.bgPhoto});
   background-size: cover;
   background-position: center center;
+  border-radius: 10px;
   height: 400px;
   font-size: 66px;
   position: relative;
@@ -61,13 +62,13 @@ export const BigCover = styled.div`
   width: 100%;
   background-size: cover;
   background-position: center center;
-  height: 400px;
+  height: 300px;
 `;
 
 export const BigTitle = styled.h3`
   color: ${(props) => props.theme.white.lighter};
-  padding: 20px;
-  font-size: 46px;
+  padding: 15px;
+  font-size: 28px;
   position: relative;
   top: -80px;
 `;
@@ -93,12 +94,12 @@ export const rowVariants = {
 
 export const boxVariants = {
   hover: {
-    scale: 1.3,
+    scale: 1.2,
     y: -80,
     transition: {
-      delay: 0.3,
-      duaration: 0.1,
-      type: "tween",
+      delay: 0.2,
+      duaration: 0.4,
+      type: "spring",
     },
   },
 };

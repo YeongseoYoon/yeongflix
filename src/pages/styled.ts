@@ -28,11 +28,23 @@ export const Title = styled.h3`
   text-align: center;
 `;
 
-export const boxVariants = {
-  hidden: { opacity: 0, scale: 0.5 },
+export const containerVariants = {
+  hidden: { opacity: 1, scale: 0.5 },
   visible: {
     opacity: 1,
     scale: 1,
+    transition: {
+      delayChildren: 0.2,
+      staggerChildren: 0.2,
+    },
+  },
+};
+
+export const cardVariants = {
+  hidden: { scale: 0.5, opacity: 0 },
+  visible: {
+    scale: 1,
+    opacity: 1,
   },
   hover: {
     y: -80,

@@ -8,7 +8,8 @@ import {
   CardImg,
   Title,
   Wrapper,
-  boxVariants,
+  containerVariants,
+  cardVariants,
 } from "../pages/styled";
 import makeImagePath from "../utils/makeImagePath";
 import { IMovie } from "../types";
@@ -39,30 +40,18 @@ function MovieList({ data: movies }: IMovieListProps) {
       <AnimatePresence>
         {movies && (
           <Container
+            variants={containerVariants}
             initial="hidden"
             animate="visible"
-            variants={{
-              visible: {
-                opacity: 1,
-                scale: 1,
-                transition: { delayChildren: 0.02, staggerChildren: 0.1 },
-              },
-            }}
           >
             {movies?.map((movie) => (
               <Card
                 layoutId={String(movie.id)}
                 key={movie.id}
-                whileHover="hover"
-                initial="hidden"
-                animate="visible"
-                transition={{
-                  scale: {
-                    type: "spring",
-                    stiffness: 100,
-                  },
+                variants={cardVariants}
+                whileHover={{
+                  y: -20,
                 }}
-                variants={boxVariants}
                 onClick={() => handleBoxClicked(String(movie.id))}
               >
                 <CardImg

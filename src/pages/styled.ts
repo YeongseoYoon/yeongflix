@@ -1,4 +1,3 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { motion } from "framer-motion";
 import styled from "styled-components";
 
@@ -37,18 +36,6 @@ export const Title = styled.h4`
   right: 0;
   margin: 0;
 `;
-
-export const rowVariants = {
-  hidden: {
-    x: window.outerWidth + 5,
-  },
-  visible: {
-    x: 0,
-  },
-  exit: {
-    x: -window.outerWidth - 5,
-  },
-};
 
 export const boxVariants = {
   hover: {

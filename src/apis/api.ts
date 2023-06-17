@@ -61,7 +61,7 @@ export const homeQuery = () => ({
 });
 
 export const movieDetailQuery = (movieId: string) => ({
-  queryKey: ["movieDetail"],
+  queryKey: ["movieDetail", movieId],
   queryFn: async () => {
     const movie = await getMovieDetail(movieId);
     if (!movie) {

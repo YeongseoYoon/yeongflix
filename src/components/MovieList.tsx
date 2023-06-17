@@ -32,7 +32,7 @@ function MovieList({ data: movies }: IMovieListProps) {
       <AnimatePresence>
         {movies?.map((movie, index) => (
           <Box
-            layoutId={movie.id + ""}
+            layoutId={String(movie.id)}
             key={movie.id}
             whileHover="hover"
             initial={{ opacity: 0, scale: 0.5 }}
@@ -49,7 +49,7 @@ function MovieList({ data: movies }: IMovieListProps) {
               delay: index * 0.1,
             }}
             variants={boxVariants}
-            onClick={() => handleBoxClicked(movie.id + "")}
+            onClick={() => handleBoxClicked(String(movie.id))}
             bgPhoto={makeImagePath(movie.poster_path, "w500")}
           >
             <Title>{movie.title}</Title>
@@ -57,7 +57,10 @@ function MovieList({ data: movies }: IMovieListProps) {
         ))}
       </AnimatePresence>
       {isClicked && !isLoading && movieDetailData ? (
-        <MovieDetail movieDetailData={movieDetailData} />
+        <MovieDetail
+          movieDetailData={movieDetailData}
+          setIsClicked={setIsClicked}
+        />
       ) : null}
     </Wrapper>
   );

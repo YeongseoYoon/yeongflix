@@ -1,6 +1,5 @@
 import { faCircleXmark } from "@fortawesome/free-solid-svg-icons";
 import { AnimatePresence, useScroll } from "framer-motion";
-import { useNavigate } from "react-router-dom";
 
 import {
   BigCover,
@@ -15,28 +14,32 @@ import makeImagePath from "../utils/makeImagePath";
 
 interface IMovieDetailProp {
   movieDetailData: IMovieDetail;
+  setIsClicked: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-function MovieDetail({ movieDetailData }: IMovieDetailProp) {
+function MovieDetail({ movieDetailData, setIsClicked }: IMovieDetailProp) {
   const { scrollY } = useScroll();
-  const navigate = useNavigate();
-  const onOverlayClick = () => navigate(-1);
+  console.log(movieDetailData.id);
 
   return (
     <AnimatePresence>
       <Overlay
-        onClick={onOverlayClick}
-        exit={{ opacity: 0 }}
+        onClick={() => setIsClicked((prev) => !prev)}
+        initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
       />
       <BigMovie
-        layoutId={movieDetailData.id + ""}
+        layoutId={String(movieDetailData.id)}
         key={movieDetailData.id}
         style={{ top: scrollY.get() + 100 }}
       >
         {movieDetailData && (
           <>
-            <CloseButton icon={faCircleXmark} onClick={onOverlayClick} />
+            <CloseButton
+              icon={faCircleXmark}
+              onClick={() => setIsClicked((prev) => !prev)}
+            />
             <BigCover
               style={{
                 backgroundImage: `linear-gradient(to top, black, transparent), url(${makeImagePath(

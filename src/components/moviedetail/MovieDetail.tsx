@@ -11,6 +11,7 @@ import {
 } from "./MovieDetail.styled";
 import { IMovieDetail } from "../../types/types";
 import makeImagePath from "../../utils/makeImagePath";
+import { useEffect } from "react";
 
 interface IMovieDetailProp {
   movieDetailData: IMovieDetail;
@@ -23,6 +24,17 @@ function MovieDetail({
   setIsClicked,
   scrollY,
 }: IMovieDetailProp) {
+  useEffect(() => {
+    const scrollbarWidth =
+      window.innerWidth - document.documentElement.clientWidth;
+    document.body.style.overflow = "hidden";
+    document.body.style.paddingRight = `${scrollbarWidth}px`;
+
+    return () => {
+      document.body.style.overflow = "";
+      document.body.style.paddingRight = "";
+    };
+  }, []);
   return (
     <AnimatePresence>
       <Overlay

@@ -9,9 +9,8 @@ import {
   CloseButton,
   Overlay,
 } from "./MovieDetail.styled";
-import { IMovieDetail } from "../types/types";
-import makeImagePath from "../utils/makeImagePath";
-import { useEffect } from "react";
+import { IMovieDetail } from "../../types/types";
+import makeImagePath from "../../utils/makeImagePath";
 
 interface IMovieDetailProp {
   movieDetailData: IMovieDetail;

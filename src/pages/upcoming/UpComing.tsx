@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { IMovie } from "../../types";
 import { upComingQuery } from "../../apis/api";
 
-import MovieList from "../../components/MovieList";
+import MovieList from "../../components/movielist/MovieList";
 
 const UpComing = () => {
   const { data } = useQuery<IMovie[]>(upComingQuery());

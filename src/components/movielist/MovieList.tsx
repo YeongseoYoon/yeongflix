@@ -10,13 +10,13 @@ import {
   Wrapper,
   containerVariants,
   cardVariants,
-} from "../pages/styled";
-import makeImagePath from "../utils/makeImagePath";
-import { IMovie } from "../types";
-import { IMovieDetail } from "../types/types";
+} from "./MovieList.styled";
+import makeImagePath from "../../utils/makeImagePath";
+import { IMovie } from "../../types";
+import { IMovieDetail } from "../../types/types";
 
-import MovieDetail from "./MovieDetail";
-import { movieDetailQuery } from "../apis/api";
+import MovieDetail from "../moviedetail/MovieDetail";
+import { movieDetailQuery } from "../../apis/api";
 
 interface IMovieListProps {
   data: IMovie[];

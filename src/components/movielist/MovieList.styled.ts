@@ -26,6 +26,11 @@ export const Title = styled.h3`
   margin-top: 15px;
   font-size: 20px;
   text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
 `;
 
 export const containerVariants = {

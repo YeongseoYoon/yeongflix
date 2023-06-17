@@ -6,10 +6,10 @@ import { QueryClientProvider } from "@tanstack/react-query";
 
 import router from "./Router";
 import { GlobalStyle } from "./GlobalStyle";
+import { queryClient } from "./utils/queryClient";
 
 import { theme } from "./styles/theme";
 import "./styles/reset.css";
-import { queryClient } from "./utils/queryClient";
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>

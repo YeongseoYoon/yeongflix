@@ -2,7 +2,14 @@ import { AnimatePresence } from "framer-motion";
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 
-import { Box, Title, Wrapper, boxVariants } from "../pages/styled";
+import {
+  Container,
+  Card,
+  CardImg,
+  Title,
+  Wrapper,
+  boxVariants,
+} from "../pages/styled";
 import makeImagePath from "../utils/makeImagePath";
 import { IMovie } from "../types";
 import { IMovieDetail } from "../types/types";
@@ -30,31 +37,45 @@ function MovieList({ data: movies }: IMovieListProps) {
   return (
     <Wrapper>
       <AnimatePresence>
-        {movies?.map((movie, index) => (
-          <Box
-            layoutId={String(movie.id)}
-            key={movie.id}
-            whileHover="hover"
-            initial={{ opacity: 0, scale: 0.5 }}
-            animate={{
-              opacity: 1,
-              scale: 1,
-            }}
-            transition={{
-              scale: {
-                type: "spring",
-                stiffness: 100,
+        {movies && (
+          <Container
+            initial="hidden"
+            animate="visible"
+            variants={{
+              visible: {
+                opacity: 1,
+                scale: 1,
+                transition: { delayChildren: 0.02, staggerChildren: 0.1 },
               },
-              delay: index * 0.1,
             }}
-            variants={boxVariants}
-            onClick={() => handleBoxClicked(String(movie.id))}
-            bgPhoto={makeImagePath(movie.poster_path, "w500")}
           >
-            <Title>{movie.title}</Title>
-          </Box>
-        ))}
+            {movies?.map((movie) => (
+              <Card
+                layoutId={String(movie.id)}
+                key={movie.id}
+                whileHover="hover"
+                initial="hidden"
+                animate="visible"
+                transition={{
+                  scale: {
+                    type: "spring",
+                    stiffness: 100,
+                  },
+                }}
+                variants={boxVariants}
+                onClick={() => handleBoxClicked(String(movie.id))}
+              >
+                <CardImg
+                  alt={movie.title}
+                  src={makeImagePath(movie.poster_path, "w500")}
+                />
+                <Title>{movie.title}</Title>
+              </Card>
+            ))}
+          </Container>
+        )}
       </AnimatePresence>
+
       {isClicked && !isLoading && movieDetailData ? (
         <MovieDetail
           movieDetailData={movieDetailData}

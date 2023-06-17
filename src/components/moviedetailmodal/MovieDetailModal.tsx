@@ -50,12 +50,12 @@ function MovieDetailModal({
         style={{ zIndex: 10 }}
       />
       <Modal
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        initial={{ opacity: 0 }}
+        animate={{ opacity: 1, zIndex: 100 }}
+        exit={{ opacity: 0, zIndex: 100 }}
+        initial={{ opacity: 0, zIndex: 100 }}
         layoutId={String(movieDetailData.id)}
         key={movieDetailData.id}
-        style={{ top: scrollY + 100, zIndex: 11 }}
+        style={{ top: scrollY + 100, zIndex: 100 }}
       >
         {movieDetailData && (
           <>

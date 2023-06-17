@@ -7,7 +7,12 @@ export const Container = styled(motion.div)`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 20px;
-  margin: 80px 20px 10px 20px;
+  margin: 100px 20px 10px 20px;
+`;
+
+export const CardWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
 `;
 
 export const Card = styled(motion.div)`

@@ -10,6 +10,7 @@ import {
   Wrapper,
   containerVariants,
   cardVariants,
+  CardWrapper,
 } from "./MovieList.styled";
 import makeImagePath from "../../utils/makeImagePath";
 import { IMovie } from "../../types";
@@ -45,21 +46,23 @@ function MovieList({ data: movies }: IMovieListProps) {
             animate="visible"
           >
             {movies?.map((movie) => (
-              <Card
-                layoutId={String(movie.id)}
-                key={movie.id}
-                variants={cardVariants}
-                whileHover={{
-                  y: -20,
-                }}
-                onClick={() => handleBoxClicked(String(movie.id))}
-              >
-                <CardImg
-                  alt={movie.title}
-                  src={makeImagePath(movie.poster_path, "w500")}
-                />
+              <CardWrapper key={`${movie.id}-${movie.genre_ids}`}>
+                <Card
+                  layoutId={String(movie.id)}
+                  key={movie.id}
+                  variants={cardVariants}
+                  whileHover={{
+                    y: -20,
+                  }}
+                  onClick={() => handleBoxClicked(String(movie.id))}
+                >
+                  <CardImg
+                    alt={movie.title}
+                    src={makeImagePath(movie.poster_path, "w500")}
+                  />
+                </Card>
                 <Title>{movie.title}</Title>
-              </Card>
+              </CardWrapper>
             ))}
           </Container>
         )}

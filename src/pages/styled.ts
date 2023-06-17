@@ -39,11 +39,12 @@ export const Title = styled.h4`
 
 export const boxVariants = {
   hover: {
-    scale: 1.2,
     y: -80,
+    zIndex: 100,
     transition: {
-      delay: 0.2,
-      duaration: 0.4,
+      delay: 0.4,
+      duration: 0.5,
+      stiffness: 100,
       type: "spring",
     },
   },

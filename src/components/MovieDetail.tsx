@@ -19,7 +19,6 @@ interface IMovieDetailProp {
 
 function MovieDetail({ movieDetailData, setIsClicked }: IMovieDetailProp) {
   const { scrollY } = useScroll();
-  console.log(movieDetailData.id);
 
   return (
     <AnimatePresence>
@@ -28,11 +27,15 @@ function MovieDetail({ movieDetailData, setIsClicked }: IMovieDetailProp) {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
+        style={{ zIndex: 10 }}
       />
       <BigMovie
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        initial={{ opacity: 0 }}
         layoutId={String(movieDetailData.id)}
         key={movieDetailData.id}
-        style={{ top: scrollY.get() + 100 }}
+        style={{ top: scrollY.get() + 100, zIndex: 11 }}
       >
         {movieDetailData && (
           <>

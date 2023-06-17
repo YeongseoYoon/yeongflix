@@ -41,7 +41,6 @@ function MovieList({ data: movies }: IMovieListProps) {
               scale: 1,
             }}
             transition={{
-              duration: 0.3,
               scale: {
                 type: "spring",
                 stiffness: 100,

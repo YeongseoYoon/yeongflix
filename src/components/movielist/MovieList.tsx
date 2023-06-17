@@ -1,4 +1,4 @@
-import { AnimatePresence } from "framer-motion";
+import { AnimatePresence, useScroll } from "framer-motion";
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 
@@ -23,6 +23,7 @@ interface IMovieListProps {
 }
 
 function MovieList({ data: movies }: IMovieListProps) {
+  const { scrollY } = useScroll();
   const [isClicked, setIsClicked] = useState(false);
   const [movieId, setMovieId] = useState("");
 
@@ -69,6 +70,7 @@ function MovieList({ data: movies }: IMovieListProps) {
         <MovieDetail
           movieDetailData={movieDetailData}
           setIsClicked={setIsClicked}
+          scrollY={scrollY.get()}
         />
       ) : null}
     </Wrapper>

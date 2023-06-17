@@ -1,5 +1,5 @@
 import { faCircleXmark } from "@fortawesome/free-solid-svg-icons";
-import { AnimatePresence, useScroll } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
 
 import {
   BigCover,
@@ -15,11 +15,14 @@ import makeImagePath from "../../utils/makeImagePath";
 interface IMovieDetailProp {
   movieDetailData: IMovieDetail;
   setIsClicked: React.Dispatch<React.SetStateAction<boolean>>;
+  scrollY: number;
 }
 
-function MovieDetail({ movieDetailData, setIsClicked }: IMovieDetailProp) {
-  const { scrollY } = useScroll();
-
+function MovieDetail({
+  movieDetailData,
+  setIsClicked,
+  scrollY,
+}: IMovieDetailProp) {
   return (
     <AnimatePresence>
       <Overlay
@@ -35,7 +38,7 @@ function MovieDetail({ movieDetailData, setIsClicked }: IMovieDetailProp) {
         initial={{ opacity: 0 }}
         layoutId={String(movieDetailData.id)}
         key={movieDetailData.id}
-        style={{ top: scrollY.get() + 100, zIndex: 11 }}
+        style={{ top: scrollY + 100, zIndex: 11 }}
       >
         {movieDetailData && (
           <>

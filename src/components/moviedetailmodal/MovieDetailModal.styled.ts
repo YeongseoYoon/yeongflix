@@ -27,21 +27,36 @@ export const ModalCover = styled.div`
   background-size: cover;
   background-position: center center;
   height: 300px;
+  position: relative;
 `;
 
 export const ModalTitle = styled.h3`
   color: ${(props) => props.theme.white.lighter};
   padding: 15px;
   font-size: 28px;
-  position: relative;
-  top: -80px;
+  position: absolute;
+  bottom: 0px;
 `;
 
-export const ModalOverview = styled.p`
-  padding: 20px;
-  position: relative;
-  top: -80px;
+export const ModalInformation = styled.p`
+  padding: 5px 20px 0px 20px;
   color: ${(props) => props.theme.white.lighter};
+`;
+
+export const ModalOverView = styled.p`
+  padding: 20px 20px 0 20px;
+  margin-bottom: 20px;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  color: ${(props) => props.theme.white.lighter};
+`;
+
+export const Label = styled.span`
+  font-weight: 600;
 `;
 
 export const CloseButton = styled(FontAwesomeIcon)`

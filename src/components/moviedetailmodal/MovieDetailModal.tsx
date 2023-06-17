@@ -6,12 +6,16 @@ import {
   Overlay,
   Modal,
   ModalCover,
-  ModalOverview,
+  ModalInformation,
   ModalTitle,
   CloseButton,
+  ModalOverView,
+  Label,
 } from "./MovieDetailModal.styled";
 import { IMovieDetail } from "../../types/types";
 import makeImagePath from "../../utils/makeImagePath";
+import formatRating from "../../utils/formatRating";
+import convertToDollarFormat from "../../utils/convertToDollarFormat";
 
 interface IMovieDetailModalProp {
   movieDetailData: IMovieDetail;
@@ -35,6 +39,7 @@ function MovieDetailModal({
       document.body.style.paddingRight = "";
     };
   }, []);
+  console.log(movieDetailData);
   return (
     <AnimatePresence>
       <Overlay
@@ -54,10 +59,6 @@ function MovieDetailModal({
       >
         {movieDetailData && (
           <>
-            <CloseButton
-              icon={faCircleXmark}
-              onClick={() => setIsClicked((prev) => !prev)}
-            />
             <ModalCover
               style={{
                 backgroundImage: `linear-gradient(to top, black, transparent), url(${makeImagePath(
@@ -65,10 +66,53 @@ function MovieDetailModal({
                   "w500"
                 )})`,
               }}
-            />
-            <ModalTitle>{movieDetailData.title}</ModalTitle>
-            <ModalOverview>{movieDetailData.overview}</ModalOverview>
-            <ModalOverview>{movieDetailData.overview}</ModalOverview>
+            >
+              <CloseButton
+                icon={faCircleXmark}
+                onClick={() => setIsClicked((prev) => !prev)}
+              />
+              <ModalTitle>{movieDetailData.title}</ModalTitle>
+            </ModalCover>
+
+            {!!movieDetailData.overview && (
+              <ModalOverView>{movieDetailData?.overview} </ModalOverView>
+            )}
+
+            {!!movieDetailData.budget && (
+              <ModalInformation>
+                <Label>Budget: </Label>
+                {convertToDollarFormat(movieDetailData.budget)}
+              </ModalInformation>
+            )}
+
+            {!!movieDetailData.revenue && (
+              <ModalInformation>
+                <Label>Revenue: </Label>
+                {convertToDollarFormat(movieDetailData.revenue)}
+              </ModalInformation>
+            )}
+
+            {!!movieDetailData.runtime && (
+              <ModalInformation>
+                <Label>Runtime: </Label> {movieDetailData.runtime + " minutes"}
+              </ModalInformation>
+            )}
+
+            {!!movieDetailData.vote_average && (
+              <ModalInformation>
+                <Label>Rating: </Label>
+                {formatRating(movieDetailData.vote_average)}
+              </ModalInformation>
+            )}
+
+            {!!movieDetailData.homepage && (
+              <ModalInformation>
+                <Label>Homepage: </Label>
+                <a href={movieDetailData.homepage}>
+                  {movieDetailData.homepage}
+                </a>
+              </ModalInformation>
+            )}
           </>
         )}
       </Modal>

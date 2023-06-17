@@ -10,7 +10,7 @@ export const Overlay = styled(motion.div)`
   background-color: rgba(0, 0, 0, 0.5);
   opacity: 0;
 `;
-export const BigMovie = styled(motion.div)`
+export const Modal = styled(motion.div)`
   position: absolute;
   width: 40vw;
   height: 80vh;
@@ -22,14 +22,14 @@ export const BigMovie = styled(motion.div)`
   background-color: ${(props) => props.theme.black.lighter};
 `;
 
-export const BigCover = styled.div`
+export const ModalCover = styled.div`
   width: 100%;
   background-size: cover;
   background-position: center center;
   height: 300px;
 `;
 
-export const BigTitle = styled.h3`
+export const ModalTitle = styled.h3`
   color: ${(props) => props.theme.white.lighter};
   padding: 15px;
   font-size: 28px;
@@ -37,7 +37,7 @@ export const BigTitle = styled.h3`
   top: -80px;
 `;
 
-export const BigOverview = styled.p`
+export const ModalOverview = styled.p`
   padding: 20px;
   position: relative;
   top: -80px;

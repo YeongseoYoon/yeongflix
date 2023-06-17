@@ -14,8 +14,7 @@ import {
 import makeImagePath from "../../utils/makeImagePath";
 import { IMovie } from "../../types";
 import { IMovieDetail } from "../../types/types";
-
-import MovieDetail from "../moviedetail/MovieDetail";
+import MovieDetailModal from "../moviedetailmodal/MovieDetailModal";
 import { movieDetailQuery } from "../../apis/api";
 
 interface IMovieListProps {
@@ -67,7 +66,7 @@ function MovieList({ data: movies }: IMovieListProps) {
       </AnimatePresence>
 
       {isClicked && !isLoading && movieDetailData ? (
-        <MovieDetail
+        <MovieDetailModal
           movieDetailData={movieDetailData}
           setIsClicked={setIsClicked}
           scrollY={scrollY.get()}

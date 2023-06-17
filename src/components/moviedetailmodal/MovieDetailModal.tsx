@@ -1,29 +1,29 @@
 import { faCircleXmark } from "@fortawesome/free-solid-svg-icons";
 import { AnimatePresence } from "framer-motion";
-
-import {
-  BigCover,
-  BigMovie,
-  BigOverview,
-  BigTitle,
-  CloseButton,
-  Overlay,
-} from "./MovieDetail.styled";
-import { IMovieDetail } from "../../types/types";
-import makeImagePath from "../../utils/makeImagePath";
 import { useEffect } from "react";
 
-interface IMovieDetailProp {
+import {
+  Overlay,
+  Modal,
+  ModalCover,
+  ModalOverview,
+  ModalTitle,
+  CloseButton,
+} from "./MovieDetailModal.styled";
+import { IMovieDetail } from "../../types/types";
+import makeImagePath from "../../utils/makeImagePath";
+
+interface IMovieDetailModalProp {
   movieDetailData: IMovieDetail;
   setIsClicked: React.Dispatch<React.SetStateAction<boolean>>;
   scrollY: number;
 }
 
-function MovieDetail({
+function MovieDetailModal({
   movieDetailData,
   setIsClicked,
   scrollY,
-}: IMovieDetailProp) {
+}: IMovieDetailModalProp) {
   useEffect(() => {
     const scrollbarWidth =
       window.innerWidth - document.documentElement.clientWidth;
@@ -44,7 +44,7 @@ function MovieDetail({
         exit={{ opacity: 0 }}
         style={{ zIndex: 10 }}
       />
-      <BigMovie
+      <Modal
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
         initial={{ opacity: 0 }}
@@ -58,7 +58,7 @@ function MovieDetail({
               icon={faCircleXmark}
               onClick={() => setIsClicked((prev) => !prev)}
             />
-            <BigCover
+            <ModalCover
               style={{
                 backgroundImage: `linear-gradient(to top, black, transparent), url(${makeImagePath(
                   movieDetailData.backdrop_path,
@@ -66,13 +66,14 @@ function MovieDetail({
                 )})`,
               }}
             />
-            <BigTitle>{movieDetailData.title}</BigTitle>
-            <BigOverview>{movieDetailData.overview}</BigOverview>
+            <ModalTitle>{movieDetailData.title}</ModalTitle>
+            <ModalOverview>{movieDetailData.overview}</ModalOverview>
+            <ModalOverview>{movieDetailData.overview}</ModalOverview>
           </>
         )}
-      </BigMovie>
+      </Modal>
     </AnimatePresence>
   );
 }
 
-export default MovieDetail;
+export default MovieDetailModal;

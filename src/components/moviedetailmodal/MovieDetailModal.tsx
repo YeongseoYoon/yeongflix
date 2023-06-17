@@ -39,7 +39,7 @@ function MovieDetailModal({
       document.body.style.paddingRight = "";
     };
   }, []);
-  console.log(movieDetailData);
+
   return (
     <AnimatePresence>
       <Overlay
@@ -47,15 +47,14 @@ function MovieDetailModal({
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        style={{ zIndex: 10 }}
       />
       <Modal
-        animate={{ opacity: 1, zIndex: 100 }}
-        exit={{ opacity: 0, zIndex: 100 }}
-        initial={{ opacity: 0, zIndex: 100 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0, zIndex: 12 }}
+        initial={{ opacity: 0 }}
         layoutId={String(movieDetailData.id)}
         key={movieDetailData.id}
-        style={{ top: scrollY + 100, zIndex: 100 }}
+        style={{ top: scrollY + 100 }}
       >
         {movieDetailData && (
           <>
@@ -80,34 +79,35 @@ function MovieDetailModal({
 
             {!!movieDetailData.budget && (
               <ModalInformation>
-                <Label>Budget: </Label>
+                <Label>💸Budget: </Label>
                 {convertToDollarFormat(movieDetailData.budget)}
               </ModalInformation>
             )}
 
             {!!movieDetailData.revenue && (
               <ModalInformation>
-                <Label>Revenue: </Label>
+                <Label>🍿Revenue: </Label>
                 {convertToDollarFormat(movieDetailData.revenue)}
               </ModalInformation>
             )}
 
             {!!movieDetailData.runtime && (
               <ModalInformation>
-                <Label>Runtime: </Label> {movieDetailData.runtime + " minutes"}
+                <Label>🕛Runtime: </Label>{" "}
+                {movieDetailData.runtime + " minutes"}
               </ModalInformation>
             )}
 
             {!!movieDetailData.vote_average && (
               <ModalInformation>
-                <Label>Rating: </Label>
+                <Label>⭐Rating: </Label>
                 {formatRating(movieDetailData.vote_average)}
               </ModalInformation>
             )}
 
             {!!movieDetailData.homepage && (
               <ModalInformation>
-                <Label>Homepage: </Label>
+                <Label>🏠Homepage: </Label>
                 <a href={movieDetailData.homepage}>
                   {movieDetailData.homepage}
                 </a>

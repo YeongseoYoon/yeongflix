@@ -27,7 +27,7 @@ export const CardImg = styled.img`
   max-width: 100%;
 `;
 
-export const Title = styled.h3`
+export const Title = styled(motion.h3)`
   margin-top: 15px;
   font-size: 20px;
   text-align: center;

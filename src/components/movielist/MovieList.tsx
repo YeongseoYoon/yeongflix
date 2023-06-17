@@ -61,7 +61,7 @@ function MovieList({ data: movies }: IMovieListProps) {
                     src={makeImagePath(movie.poster_path, "w500")}
                   />
                 </Card>
-                <Title>{movie.title}</Title>
+                <Title variants={cardVariants}>{movie.title}</Title>
               </CardWrapper>
             ))}
           </Container>

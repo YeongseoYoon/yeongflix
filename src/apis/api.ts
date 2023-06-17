@@ -34,3 +34,71 @@ export async function getUpcomingMovies() {
     throw error;
   }
 }
+
+export async function getMovieDetail(movieId: string) {
+  try {
+    const data = await (
+      await fetch(`${BASE_URL}/movie/${movieId}?api_key=${VITE_API_KEY}`)
+    ).json();
+    return data;
+  } catch (error) {
+    throw error;
+  }
+}
+
+export const homeQuery = () => ({
+  queryKey: ["popular"],
+  queryFn: async () => {
+    const movies = await getPopularMovies();
+    if (!movies) {
+      throw new Response("", {
+        status: 404,
+        statusText: "Not Found",
+      });
+    }
+    return movies;
+  },
+});
+
+export const movieDetailQuery = (movieId: string) => ({
+  queryKey: ["movieDetail"],
+  queryFn: async () => {
+    const movie = await getMovieDetail(movieId);
+    if (!movie) {
+      throw new Response("", {
+        status: 404,
+        statusText: "Not Found",
+      });
+    }
+    return movie;
+  },
+  enabled: !!movieId,
+});
+
+export const upComingQuery = () => ({
+  queryKey: ["upcoming"],
+  queryFn: async () => {
+    const movies = await getUpcomingMovies();
+    if (!movies) {
+      throw new Response("", {
+        status: 404,
+        statusText: "Not Found",
+      });
+    }
+    return movies;
+  },
+});
+
+export const nowPlayingQuery = () => ({
+  queryKey: ["nowplaying"],
+  queryFn: async () => {
+    const movies = await getNowPlayingMovies();
+    if (!movies) {
+      throw new Response("", {
+        status: 404,
+        statusText: "Not Found",
+      });
+    }
+    return movies;
+  },
+});

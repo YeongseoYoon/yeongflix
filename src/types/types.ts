@@ -60,7 +60,7 @@ interface SpokenLanguage {
   name: string;
 }
 
-export interface IAPIResponse {
+export default interface IAPIResponse {
   page: number;
   results: IMovie[];
 }

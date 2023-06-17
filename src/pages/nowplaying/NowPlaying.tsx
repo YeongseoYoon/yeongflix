@@ -1,13 +1,13 @@
 import { useQuery } from "@tanstack/react-query";
 import { IMovie } from "../../types";
-import { homeQuery } from "../../apis/api";
+import { nowPlayingQuery } from "../../apis/api";
 
 import MovieList from "../../components/MovieList";
 
-const Home = () => {
-  const { data } = useQuery<IMovie[]>(homeQuery());
+const NowPlaying = () => {
+  const { data } = useQuery<IMovie[]>(nowPlayingQuery());
 
   return <MovieList data={data!} />;
 };
 
-export default Home;
+export default NowPlaying;

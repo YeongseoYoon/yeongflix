@@ -17,15 +17,10 @@ export const Col = styled.div`
   display: flex;
   align-items: center;
 `;
-export const Logo = styled(motion.svg)`
+export const Logo = styled.h2`
   margin-right: 50px;
-  width: 95px;
-  height: 25px;
-  fill: ${(props) => props.theme.red};
-  path {
-    stroke-width: 6px;
-    stroke: white;
-  }
+  font-size: 40px;
+  font-family: "Darumadrop One", cursive;
 `;
 export const Items = styled.ul`
   display: flex;
@@ -68,18 +63,6 @@ export const Input = styled(motion.input)`
   background-color: transparent;
   border: 1px solid ${(props) => props.theme.white.lighter};
 `;
-
-export const logoVariants = {
-  normal: {
-    fillOpacity: 1,
-  },
-  active: {
-    fillOpacity: [0, 1, 0],
-    transition: {
-      repeat: Infinity,
-    },
-  },
-};
 
 export const navVariants = {
   top: {

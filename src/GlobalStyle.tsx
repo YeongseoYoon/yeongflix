@@ -57,7 +57,7 @@ body {
   height: 100vh;
   
   font-weight: 300;
-  font-family: "Roboto", sans-serif;
+  font-family: 'Quicksand', sans-serif;
   cursor: default;
   color:${(props) => props.theme.white.darker};
   line-height: 1.2;

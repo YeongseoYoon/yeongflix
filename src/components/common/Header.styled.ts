@@ -24,6 +24,18 @@ export const Logo = styled(motion.h2)`
   font-family: "Darumadrop One", cursive;
   color: ${({ theme }) => theme.text};
 `;
+export const Search = styled.form`
+  color: ${({ theme }) => theme.text};
+  display: flex;
+  align-items: center;
+  position: relative;
+  svg {
+    cursor: pointer;
+    color: ${({ theme }) => theme.text};
+    height: 25px;
+  }
+`;
+
 export const Items = styled.ul`
   display: flex;
   align-items: center;
@@ -60,7 +72,7 @@ export const Input = styled(motion.input)`
   padding: 5px 10px;
   padding-left: 30px;
   z-index: -1;
-  color: white;
+  color: ${({ theme }) => theme.text};
   font-size: 16px;
   background-color: transparent;
   border: 1px solid ${({ theme }) => theme.text};
@@ -72,5 +84,17 @@ export const navLightVariants = {
   },
   scrolled: {
     backgroundColor: "rgba(0, 0, 20, 1)",
+  },
+};
+
+export const logoVariants = {
+  normal: {
+    fillOpacity: 1,
+  },
+  active: {
+    fillOpacity: [0, 1, 0],
+    transition: {
+      repeat: Infinity,
+    },
   },
 };

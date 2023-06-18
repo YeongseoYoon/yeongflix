@@ -81,4 +81,8 @@ button {
   cursor: pointer;
 }
 
+input{
+  font-family: 'Quicksand', sans-serif;
+}
+
 `;

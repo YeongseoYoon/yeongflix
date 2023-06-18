@@ -6,6 +6,7 @@ import { Home, NowPlaying, Search, UpComing } from "./pages";
 import { loader as homeLoader } from "./pages/home/loader";
 import { loader as upComingLoader } from "./pages/nowplaying/loader";
 import { loader as nowPlayingLoader } from "./pages/upcoming/loader";
+
 import { queryClient } from "./utils/queryClient";
 
 const Router = createBrowserRouter([

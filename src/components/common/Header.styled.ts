@@ -12,7 +12,7 @@ export const Nav = styled(motion.nav)`
   padding: 20px 60px;
   color: white;
   background-color: ${({ theme }) => theme.background};
-  z-index: 99;
+  z-index: 12;
 `;
 export const Col = styled.div`
   display: flex;

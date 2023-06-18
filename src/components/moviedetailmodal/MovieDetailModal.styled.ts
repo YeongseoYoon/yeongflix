@@ -9,6 +9,7 @@ export const Overlay = styled(motion.div)`
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
   opacity: 0;
+  z-index: 16;
 `;
 export const Modal = styled(motion.div)`
   position: absolute;
@@ -21,6 +22,7 @@ export const Modal = styled(motion.div)`
   overflow: hidden;
   background-color: #2f2f2f;
   color: white;
+  z-index: 20;
 `;
 
 export const ModalCover = styled.div`

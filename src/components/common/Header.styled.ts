@@ -21,6 +21,7 @@ export const Logo = styled.h2`
   margin-right: 50px;
   font-size: 40px;
   font-family: "Darumadrop One", cursive;
+  color: ${({ theme }) => theme.text};
 `;
 export const Items = styled.ul`
   display: flex;
@@ -28,14 +29,14 @@ export const Items = styled.ul`
 `;
 export const Item = styled.li`
   margin-right: 20px;
-  color: ${(props) => props.theme.white.darker};
+  color: ${({ theme }) => theme.text};
   transition: color 0.3s ease-in-out;
   position: relative;
   display: flex;
   justify-content: center;
   flex-direction: column;
   &:hover {
-    color: ${(props) => props.theme.white.lighter};
+    color: ${({ theme }) => theme.accent};
   }
 `;
 
@@ -48,7 +49,7 @@ export const Circle = styled(motion.span)`
   left: 0;
   right: 0;
   margin: 0 auto;
-  background-color: ${(props) => props.theme.red};
+  background-color: red;
 `;
 
 export const Input = styled(motion.input)`
@@ -61,12 +62,12 @@ export const Input = styled(motion.input)`
   color: white;
   font-size: 16px;
   background-color: transparent;
-  border: 1px solid ${(props) => props.theme.white.lighter};
+  border: 1px solid ${({ theme }) => theme.text};
 `;
 
 export const navVariants = {
   top: {
-    backgroundColor: "rgba(0, 0, 0, 0)",
+    backgroundColor: `"rgba(0, 0, 0, 0)"`,
   },
   scrolled: {
     backgroundColor: "rgba(0, 0, 0, 1)",

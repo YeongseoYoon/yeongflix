@@ -59,10 +59,10 @@ body {
   font-weight: 300;
   font-family: 'Quicksand', sans-serif;
   cursor: default;
-  color:${(props) => props.theme.white.darker};
+  background: ${({ theme }) => theme.background};
+  color: ${({ theme }) => theme.text};
   line-height: 1.2;
-  
-  background-color: black;
+
 
   overflow-x:hidden;
 

@@ -19,7 +19,8 @@ export const Modal = styled(motion.div)`
   margin: 0 auto;
   border-radius: 15px;
   overflow: hidden;
-  background-color: ${(props) => props.theme.black.lighter};
+  background-color: #2f2f2f;
+  color: white;
 `;
 
 export const ModalCover = styled.div`
@@ -31,7 +32,6 @@ export const ModalCover = styled.div`
 `;
 
 export const ModalTitle = styled.h3`
-  color: ${(props) => props.theme.white.lighter};
   padding: 15px;
   font-size: 28px;
   position: absolute;
@@ -40,7 +40,6 @@ export const ModalTitle = styled.h3`
 
 export const ModalInformation = styled.p`
   padding: 5px 20px 0px 20px;
-  color: ${(props) => props.theme.white.lighter};
 `;
 
 export const ModalOverView = styled.p`
@@ -52,7 +51,6 @@ export const ModalOverView = styled.p`
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
-  color: ${(props) => props.theme.white.lighter};
 `;
 
 export const Label = styled.span`

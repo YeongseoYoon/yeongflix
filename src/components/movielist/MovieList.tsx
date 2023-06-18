@@ -13,14 +13,14 @@ import {
   CardWrapper,
 } from "./MovieList.styled";
 import makeImagePath from "../../utils/makeImagePath";
-import { IMovie } from "../../types";
+import { IAPIResponse } from "../../types";
 import { IMovieDetail } from "../../types/types";
 import MovieDetailModal from "../moviedetailmodal/MovieDetailModal";
 import { movieDetailQuery } from "../../apis/api";
 import imgUrl from "../../assets/image/errorImg.png";
 
 interface IMovieListProps {
-  data: IMovie[];
+  data: IAPIResponse;
 }
 
 function MovieList({ data: movies }: IMovieListProps) {
@@ -49,7 +49,7 @@ function MovieList({ data: movies }: IMovieListProps) {
             initial="hidden"
             animate="visible"
           >
-            {movies?.map((movie) => (
+            {movies?.results.map((movie) => (
               <CardWrapper key={`${movie.id}-${movie.genre_ids}`}>
                 <Card
                   layoutId={String(movie.id)}

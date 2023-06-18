@@ -7,7 +7,7 @@ export async function getPopularMovies() {
     const data = await (
       await fetch(`${BASE_URL}/movie/popular?api_key=${VITE_API_KEY}`)
     ).json();
-    return data.results;
+    return data;
   } catch (error) {
     throw error;
   }
@@ -18,7 +18,7 @@ export async function getNowPlayingMovies() {
     const data = await (
       await fetch(`${BASE_URL}/movie/now_playing?api_key=${VITE_API_KEY}`)
     ).json();
-    return data.results;
+    return data;
   } catch (error) {
     throw error;
   }
@@ -29,7 +29,7 @@ export async function getUpcomingMovies() {
     const data = await (
       await fetch(`${BASE_URL}/movie/upcoming?api_key=${VITE_API_KEY}`)
     ).json();
-    return data.results;
+    return data;
   } catch (error) {
     throw error;
   }
@@ -53,7 +53,7 @@ export async function getMovieSearch(keyword: string) {
         `${BASE_URL}/search/movie?query=${keyword}&include_adult=false&language=en-US&api_key=${VITE_API_KEY}`
       )
     ).json();
-    return data.results;
+    return data;
   } catch (error) {
     throw error;
   }

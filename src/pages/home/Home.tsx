@@ -1,11 +1,11 @@
-import { useQuery } from "@tanstack/react-query";
-import { IMovie } from "../../types";
+import { useQuery, useInfiniteQuery } from "@tanstack/react-query";
+import { IAPIResponse } from "../../types";
 import { homeQuery } from "../../apis/api";
 
 import MovieList from "../../components/movielist/MovieList";
 
 const Home = () => {
-  const { data } = useQuery<IMovie[]>(homeQuery());
+  const { data } = useQuery<IAPIResponse>(homeQuery());
 
   return <MovieList data={data!} />;
 };

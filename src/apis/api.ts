@@ -46,6 +46,19 @@ export async function getMovieDetail(movieId: string) {
   }
 }
 
+export async function getMovieSearch(keyword: string) {
+  try {
+    const data = await (
+      await fetch(
+        `${BASE_URL}/search/movie?query=${keyword}&include_adult=false&language=en-US&api_key=${VITE_API_KEY}`
+      )
+    ).json();
+    return data.results;
+  } catch (error) {
+    throw error;
+  }
+}
+
 export const homeQuery = () => ({
   queryKey: ["popular"],
   queryFn: async () => {
@@ -73,6 +86,20 @@ export const movieDetailQuery = (movieId: string) => ({
     return movie;
   },
   enabled: !!movieId,
+});
+
+export const movieSearchQuery = (keyword: string) => ({
+  queryKey: ["movieSearch", keyword],
+  queryFn: async () => {
+    const movie = await getMovieSearch(keyword);
+    if (!movie) {
+      throw new Response("", {
+        status: 404,
+        statusText: "Not Found",
+      });
+    }
+    return movie;
+  },
 });
 
 export const upComingQuery = () => ({

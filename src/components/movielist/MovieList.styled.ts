@@ -13,6 +13,7 @@ export const Container = styled(motion.div)`
 export const CardWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
 `;
 
 export const Card = styled(motion.div)`
@@ -25,6 +26,8 @@ export const Card = styled(motion.div)`
 export const CardImg = styled.img`
   border-radius: 12px;
   max-width: 100%;
+  aspect-ratio: 3/4;
+  object-fit: cover;
 `;
 
 export const Title = styled(motion.h3)`
@@ -44,8 +47,8 @@ export const containerVariants = {
     opacity: 1,
     scale: 1,
     transition: {
-      delayChildren: 0.2,
-      staggerChildren: 0.2,
+      delayChildren: 0.1,
+      staggerChildren: 0.1,
     },
   },
 };

@@ -1,6 +1,6 @@
 import { AnimatePresence, useScroll } from "framer-motion";
 import { useQuery } from "@tanstack/react-query";
-import { useState } from "react";
+import { SyntheticEvent, useState } from "react";
 
 import {
   Container,
@@ -17,6 +17,7 @@ import { IMovie } from "../../types";
 import { IMovieDetail } from "../../types/types";
 import MovieDetailModal from "../moviedetailmodal/MovieDetailModal";
 import { movieDetailQuery } from "../../apis/api";
+import imgUrl from "../../assets/image/errorImg.png";
 
 interface IMovieListProps {
   data: IMovie[];
@@ -27,15 +28,18 @@ function MovieList({ data: movies }: IMovieListProps) {
   const [isClicked, setIsClicked] = useState(false);
   const [movieId, setMovieId] = useState("");
 
+  const { data: movieDetailData, isLoading } = useQuery<IMovieDetail>(
+    movieDetailQuery(movieId)
+  );
   const handleBoxClicked = (id: string) => {
     setIsClicked((prev) => !prev);
     setMovieId(id);
   };
 
-  const { data: movieDetailData, isLoading } = useQuery<IMovieDetail>(
-    movieDetailQuery(movieId)
-  );
-
+  const handleErrorImage = (event: SyntheticEvent<HTMLImageElement, Event>) => {
+    event.currentTarget.onerror = null;
+    event.currentTarget.src = imgUrl;
+  };
   return (
     <Wrapper>
       <AnimatePresence>
@@ -59,6 +63,7 @@ function MovieList({ data: movies }: IMovieListProps) {
                   <CardImg
                     alt={movie.title}
                     src={makeImagePath(movie.poster_path, "w500")}
+                    onError={handleErrorImage}
                   />
                 </Card>
                 <Title variants={cardVariants}>{movie.title}</Title>

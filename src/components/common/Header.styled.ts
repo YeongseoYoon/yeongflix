@@ -29,11 +29,13 @@ export const Search = styled.form`
   display: flex;
   align-items: center;
   position: relative;
-  svg {
-    cursor: pointer;
-    color: ${({ theme }) => theme.text};
-    height: 25px;
-  }
+`;
+
+export const SearchButton = styled.button`
+  color: ${({ theme }) => theme.text};
+  background: none;
+  border: none;
+  height: 25px;
 `;
 
 export const Items = styled.ul`
@@ -65,17 +67,16 @@ export const Circle = styled(motion.span)`
   background-color: red;
 `;
 
-export const Input = styled(motion.input)`
-  transform-origin: right center;
+export const Input = styled.input`
   position: absolute;
   right: 0px;
   padding: 5px 10px;
-  padding-left: 30px;
   z-index: -1;
   color: ${({ theme }) => theme.text};
   font-size: 16px;
   background-color: transparent;
-  border: 1px solid ${({ theme }) => theme.text};
+  border: none;
+  border-bottom: 1px solid ${({ theme }) => theme.text};
 `;
 
 export const navLightVariants = {
@@ -84,17 +85,5 @@ export const navLightVariants = {
   },
   scrolled: {
     backgroundColor: "rgba(0, 0, 20, 1)",
-  },
-};
-
-export const logoVariants = {
-  normal: {
-    fillOpacity: 1,
-  },
-  active: {
-    fillOpacity: [0, 1, 0],
-    transition: {
-      repeat: Infinity,
-    },
   },
 };

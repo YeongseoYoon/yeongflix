@@ -2,15 +2,24 @@ import { useQuery } from "@tanstack/react-query";
 import { useLocation } from "react-router";
 import { movieSearchQuery } from "../../apis/api";
 import { MovieList } from "../../components";
-import { IMovie } from "../../types";
+import { IAPIResponse } from "../../types";
+import { EmptyResults } from "../../components";
 
 const Search = () => {
   const location = useLocation();
   const keyword = new URLSearchParams(location.search).get("keyword");
 
-  const { data } = useQuery<IMovie[]>(movieSearchQuery(keyword || ""));
+  const { data } = useQuery<IAPIResponse>(movieSearchQuery(keyword || ""));
 
-  return <MovieList data={data!} />;
+  return (
+    <>
+      {data && data.results && data.results.length > 0 ? (
+        <MovieList data={data} />
+      ) : (
+        <EmptyResults keyword={keyword || ""} />
+      )}
+    </>
+  );
 };
 
 export default Search;

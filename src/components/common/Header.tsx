@@ -1,4 +1,3 @@
-import { useState } from "react";
 import {
   Link,
   NavigateFunction,
@@ -6,13 +5,10 @@ import {
   useMatch,
   useNavigate,
 } from "react-router-dom";
-import {
-  motion,
-  useAnimation,
-  useMotionValueEvent,
-  useScroll,
-} from "framer-motion";
+import { useAnimation, useMotionValueEvent, useScroll } from "framer-motion";
 import { useForm } from "react-hook-form";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import {
   Circle,
@@ -25,8 +21,6 @@ import {
   Search,
   SearchButton,
 } from "./Header.styled";
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 interface IForm {
   keyword: string;
@@ -81,7 +75,7 @@ function Header() {
       <Col>
         <Search onSubmit={handleSubmit(onValid)}>
           <Input
-            {...register("keyword", { required: true, minLength: 2 })}
+            {...register("keyword", { required: true, minLength: 1 })}
             placeholder="Search"
           />
           <SearchButton>

@@ -9,7 +9,7 @@ export const Nav = styled(motion.nav)`
   width: 100%;
   top: 0;
   font-size: 14px;
-  padding: 20px 60px;
+  padding: 10px 60px;
   color: white;
   background-color: ${({ theme }) => theme.background};
   z-index: 12;
@@ -78,12 +78,3 @@ export const Input = styled.input`
   border: none;
   border-bottom: 1px solid ${({ theme }) => theme.text};
 `;
-
-export const navLightVariants = {
-  top: {
-    backgroundColor: "rgba(0, 0, 0, 0)",
-  },
-  scrolled: {
-    backgroundColor: "rgba(0, 0, 20, 1)",
-  },
-};

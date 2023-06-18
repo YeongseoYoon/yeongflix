@@ -1,15 +1,7 @@
 import { Link, PathMatch, useMatch } from "react-router-dom";
 import { useAnimation, useMotionValueEvent, useScroll } from "framer-motion";
 
-import {
-  Circle,
-  Col,
-  Item,
-  Items,
-  Logo,
-  Nav,
-  navVariants,
-} from "./Header.styled";
+import { Circle, Col, Item, Items, Logo, Nav } from "./Header.styled";
 
 function Header() {
   const { scrollY } = useScroll();
@@ -24,7 +16,7 @@ function Header() {
     else navAnimation.start("scrolled");
   });
   return (
-    <Nav variants={navVariants} animate={navAnimation} initial={"top"}>
+    <Nav>
       <Col>
         <Logo>
           <Link to="/">YeongFlix</Link>

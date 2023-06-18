@@ -8,7 +8,7 @@ function DarkModeButton() {
 
   return (
     <ButtonWrapper onClick={toggleTheme}>
-      <ButtonIcon icon={theme === "dark" ? faSun : faMoon} />
+      <ButtonIcon icon={theme === "DARK" ? faSun : faMoon} />
     </ButtonWrapper>
   );
 }

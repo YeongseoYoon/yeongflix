@@ -2,25 +2,26 @@ import { createContext } from "react";
 import { useState, useContext } from "react";
 import { ThemeProvider as StyledProvider } from "styled-components";
 import { darkTheme, lightTheme } from "../styles/theme";
+import { THEME_MODE } from "../constants/constant";
 
 interface IThemeContext {
-  theme: "light" | "dark";
+  theme: THEME_MODE;
   toggleTheme: () => void;
 }
 
 export const ThemeContext = createContext<IThemeContext>({
-  theme: "light",
+  theme: "LIGHT",
   toggleTheme: () => {},
 });
 
 export const ThemeProvider = ({ children }: React.PropsWithChildren<{}>) => {
-  const [theme, setTheme] = useState<"light" | "dark">("light");
+  const [theme, setTheme] = useState<THEME_MODE>("LIGHT");
 
   const toggleTheme = () => {
-    setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
+    setTheme((prevTheme) => (prevTheme === "LIGHT" ? "DARK" : "LIGHT"));
   };
 
-  const themeObject = theme === "light" ? lightTheme : darkTheme;
+  const themeObject = theme === "LIGHT" ? lightTheme : darkTheme;
 
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme }}>

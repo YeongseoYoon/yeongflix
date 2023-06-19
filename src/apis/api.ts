@@ -6,7 +6,7 @@ export async function getMovies(type: string, page: number = 1) {
   try {
     const data = await (
       await fetch(
-        `${BASE_URL}/movie/${type}?language=en-US&page=${page}&api_key=${VITE_API_KEY}`
+        `${BASE_URL}/movie/${type}?language=en-US&include_adult=false&page=${page}&api_key=${VITE_API_KEY}`
       )
     ).json();
     return data;
@@ -26,11 +26,11 @@ export async function getMovieDetail(movieId: string) {
   }
 }
 
-export async function getMovieSearch(keyword: string) {
+export async function getMovieSearch(keyword: string, page: number = 1) {
   try {
     const data = await (
       await fetch(
-        `${BASE_URL}/search/movie?query=${keyword}&include_adult=false&language=en-US&api_key=${VITE_API_KEY}`
+        `${BASE_URL}/search/movie?query=${keyword}&language=en-US&include_adult=false&page=${page}&api_key=${VITE_API_KEY}`
       )
     ).json();
     return data;
@@ -79,33 +79,5 @@ export const movieSearchQuery = (keyword: string) => ({
       });
     }
     return movie;
-  },
-});
-
-export const upComingQuery = (type: string, page: number) => ({
-  queryKey: ["upcoming"],
-  queryFn: async () => {
-    const movies = await getMovies(type, page);
-    if (!movies) {
-      throw new Response("", {
-        status: 404,
-        statusText: "Not Found",
-      });
-    }
-    return movies;
-  },
-});
-
-export const nowPlayingQuery = (type: string, page: number) => ({
-  queryKey: ["nowplaying"],
-  queryFn: async () => {
-    const movies = await getMovies(type, page);
-    if (!movies) {
-      throw new Response("", {
-        status: 404,
-        statusText: "Not Found",
-      });
-    }
-    return movies;
   },
 });

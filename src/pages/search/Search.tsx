@@ -1,23 +1,19 @@
-import { useQuery } from "@tanstack/react-query";
 import { useLocation } from "react-router";
-import { movieSearchQuery } from "../../apis/api";
 import { MovieList } from "../../components";
-import { IAPIResponse } from "../../types";
 import { EmptyResults } from "../../components";
+import useGetSearchedMovies from "../../hooks/useGetSearchedMovies";
 
 const Search = () => {
   const location = useLocation();
   const keyword = new URLSearchParams(location.search).get("keyword");
 
-  const { data, isFetched } = useQuery<IAPIResponse>(
-    movieSearchQuery(keyword || "")
-  );
+  const { ref, data, isFetched } = useGetSearchedMovies(keyword || "");
 
   return (
     <>
       {isFetched ? (
-        data && data.results && data.results.length > 0 ? (
-          <MovieList data={data} />
+        data && data.pages && data.pages.length > 0 ? (
+          <MovieList data={data!} refProp={ref} />
         ) : (
           <EmptyResults keyword={keyword || ""} />
         )

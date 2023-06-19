@@ -20,8 +20,8 @@ export const Modal = styled(motion.div)`
   margin: 0 auto;
   border-radius: 15px;
   overflow: hidden;
-  background-color: #2f2f2f;
-  color: white;
+  background-color: ${({ theme }) => theme.background};
+  color: ${({ theme }) => theme.text};
   z-index: 20;
 `;
 
@@ -38,6 +38,7 @@ export const ModalTitle = styled.h3`
   font-size: 28px;
   position: absolute;
   bottom: 0px;
+  color: white;
 `;
 
 export const ModalInformation = styled.p`

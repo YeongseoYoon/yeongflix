@@ -1,4 +1,4 @@
-import { useQuery, useInfiniteQuery } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import { IAPIResponse } from "../../types";
 import { homeQuery } from "../../apis/api";
 

@@ -32,7 +32,7 @@ export const Search = styled.form`
 `;
 
 export const SearchButton = styled.button`
-  color: ${({ theme }) => theme.text};
+  color: black;
   background: none;
   border: none;
   height: 25px;

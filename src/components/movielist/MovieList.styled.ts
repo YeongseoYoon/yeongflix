@@ -1,11 +1,14 @@
 import { motion } from "framer-motion";
 import styled from "styled-components";
 
-export const Wrapper = styled.div``;
+export const Wrapper = styled.div`
+  max-width: 960px;
+  margin: 0px auto;
+`;
 
 export const Container = styled(motion.div)`
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 20px;
   margin: 100px 20px 10px 20px;
 `;

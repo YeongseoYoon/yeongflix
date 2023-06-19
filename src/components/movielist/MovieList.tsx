@@ -1,6 +1,7 @@
 import { AnimatePresence, useScroll } from "framer-motion";
 import { useQuery } from "@tanstack/react-query";
 import { SyntheticEvent, useState } from "react";
+import { useLocation } from "react-router-dom";
 
 import {
   Container,
@@ -26,6 +27,7 @@ function MovieList({ data: movies }: IMovieListProps) {
   const { scrollY } = useScroll();
   const [isClicked, setIsClicked] = useState(false);
   const [movieId, setMovieId] = useState("");
+  const { pathname } = useLocation();
 
   const errorImgUrl = new URL("/image/errorImg.png", import.meta.url).href;
 
@@ -53,7 +55,7 @@ function MovieList({ data: movies }: IMovieListProps) {
             {movies?.results.map((movie) => (
               <CardWrapper key={`${movie.id}-${movie.genre_ids}`}>
                 <Card
-                  layoutId={String(movie.id)}
+                  layoutId={`${String(movie.id)}-${pathname}`}
                   key={movie.id}
                   variants={cardVariants}
                   whileHover={{
@@ -79,6 +81,7 @@ function MovieList({ data: movies }: IMovieListProps) {
           movieDetailData={movieDetailData}
           setIsClicked={setIsClicked}
           scrollY={scrollY.get()}
+          pathname={pathname}
         />
       ) : null}
     </Wrapper>

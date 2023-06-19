@@ -9,15 +9,19 @@ const Search = () => {
   const location = useLocation();
   const keyword = new URLSearchParams(location.search).get("keyword");
 
-  const { data } = useQuery<IAPIResponse>(movieSearchQuery(keyword || ""));
+  const { data, isFetched } = useQuery<IAPIResponse>(
+    movieSearchQuery(keyword || "")
+  );
 
   return (
     <>
-      {data && data.results && data.results.length > 0 ? (
-        <MovieList data={data} />
-      ) : (
-        <EmptyResults keyword={keyword || ""} />
-      )}
+      {isFetched ? (
+        data && data.results && data.results.length > 0 ? (
+          <MovieList data={data} />
+        ) : (
+          <EmptyResults keyword={keyword || ""} />
+        )
+      ) : null}
     </>
   );
 };

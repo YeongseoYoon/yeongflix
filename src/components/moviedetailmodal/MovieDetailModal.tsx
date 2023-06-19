@@ -21,12 +21,14 @@ interface IMovieDetailModalProp {
   movieDetailData: IMovieDetail;
   setIsClicked: React.Dispatch<React.SetStateAction<boolean>>;
   scrollY: number;
+  pathname: string;
 }
 
 function MovieDetailModal({
   movieDetailData,
   setIsClicked,
   scrollY,
+  pathname,
 }: IMovieDetailModalProp) {
   useEffect(() => {
     const scrollbarWidth =
@@ -52,7 +54,7 @@ function MovieDetailModal({
         animate={{ opacity: 1 }}
         exit={{ opacity: 0, zIndex: 12 }}
         initial={{ opacity: 0 }}
-        layoutId={String(movieDetailData.id)}
+        layoutId={`${String(movieDetailData.id)}-${pathname}`}
         key={movieDetailData.id}
         style={{ top: scrollY + 100 }}
       >

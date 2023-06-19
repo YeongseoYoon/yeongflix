@@ -12,7 +12,7 @@ const Search = () => {
   return (
     <>
       {isFetched ? (
-        data && data.pages && data.pages.length > 0 ? (
+        data && data.pages[0].results.length > 0 ? (
           <MovieList data={data!} refProp={ref} />
         ) : (
           <EmptyResults keyword={keyword || ""} />

@@ -67,17 +67,3 @@ export const movieDetailQuery = (movieId: string) => ({
   },
   enabled: !!movieId,
 });
-
-export const movieSearchQuery = (keyword: string) => ({
-  queryKey: ["movieSearch", keyword],
-  queryFn: async () => {
-    const movie = await getMovieSearch(keyword);
-    if (!movie) {
-      throw new Response("", {
-        status: 404,
-        statusText: "Not Found",
-      });
-    }
-    return movie;
-  },
-});

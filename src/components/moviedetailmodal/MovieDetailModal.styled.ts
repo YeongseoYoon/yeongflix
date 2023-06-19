@@ -14,11 +14,12 @@ export const Overlay = styled(motion.div)`
 export const Modal = styled(motion.div)`
   position: absolute;
   width: 40vw;
-  height: 80vh;
+  height: auto;
   left: 0;
   right: 0;
   margin: 0 auto;
   border-radius: 15px;
+  padding-bottom: 10px;
   overflow: hidden;
   background-color: ${({ theme }) => theme.background};
   color: ${({ theme }) => theme.text};
@@ -43,6 +44,7 @@ export const ModalTitle = styled.h3`
 
 export const ModalInformation = styled.p`
   padding: 5px 20px 0px 20px;
+  word-wrap: break-word;
 `;
 
 export const ModalOverView = styled.p`

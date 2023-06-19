@@ -17,7 +17,6 @@ import { IAPIResponse } from "../../types";
 import { IMovieDetail } from "../../types/types";
 import MovieDetailModal from "../moviedetailmodal/MovieDetailModal";
 import { movieDetailQuery } from "../../apis/api";
-import imgUrl from "../../assets/image/errorImg.png";
 
 interface IMovieListProps {
   data: IAPIResponse;
@@ -27,6 +26,8 @@ function MovieList({ data: movies }: IMovieListProps) {
   const { scrollY } = useScroll();
   const [isClicked, setIsClicked] = useState(false);
   const [movieId, setMovieId] = useState("");
+
+  const errorImgUrl = new URL("/image/errorImg.png", import.meta.url).href;
 
   const { data: movieDetailData, isLoading } = useQuery<IMovieDetail>(
     movieDetailQuery(movieId)
@@ -38,7 +39,7 @@ function MovieList({ data: movies }: IMovieListProps) {
 
   const handleErrorImage = (event: SyntheticEvent<HTMLImageElement, Event>) => {
     event.currentTarget.onerror = null;
-    event.currentTarget.src = imgUrl;
+    event.currentTarget.src = errorImgUrl;
   };
   return (
     <Wrapper>

@@ -1,13 +1,9 @@
-import { useQuery } from "@tanstack/react-query";
-import { IAPIResponse } from "../../types";
-import { upComingQuery } from "../../apis/api";
-
 import MovieList from "../../components/movielist/MovieList";
+import useGetMovies from "../../hooks/useGetMovies";
 
 const UpComing = () => {
-  const { data } = useQuery<IAPIResponse>(upComingQuery());
-
-  return <MovieList data={data!} />;
+  const { ref, data } = useGetMovies("upcoming");
+  return <MovieList data={data!} refProp={ref} />;
 };
 
 export default UpComing;

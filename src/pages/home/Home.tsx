@@ -1,13 +1,9 @@
-import { useQuery } from "@tanstack/react-query";
-import { IAPIResponse } from "../../types";
-import { homeQuery } from "../../apis/api";
-
 import MovieList from "../../components/movielist/MovieList";
+import useGetMovies from "../../hooks/useGetMovies";
 
 const Home = () => {
-  const { data } = useQuery<IAPIResponse>(homeQuery());
-
-  return <MovieList data={data!} />;
+  const { ref, data } = useGetMovies("popular");
+  return <MovieList data={data!} refProp={ref} />;
 };
 
 export default Home;

@@ -2,32 +2,12 @@ import { BASE_URL } from "../constants/constant";
 
 const { VITE_API_KEY } = import.meta.env;
 
-export async function getPopularMovies() {
+export async function getMovies(type: string, page: number = 1) {
   try {
     const data = await (
-      await fetch(`${BASE_URL}/movie/popular?api_key=${VITE_API_KEY}`)
-    ).json();
-    return data;
-  } catch (error) {
-    throw error;
-  }
-}
-
-export async function getNowPlayingMovies() {
-  try {
-    const data = await (
-      await fetch(`${BASE_URL}/movie/now_playing?api_key=${VITE_API_KEY}`)
-    ).json();
-    return data;
-  } catch (error) {
-    throw error;
-  }
-}
-
-export async function getUpcomingMovies() {
-  try {
-    const data = await (
-      await fetch(`${BASE_URL}/movie/upcoming?api_key=${VITE_API_KEY}`)
+      await fetch(
+        `${BASE_URL}/movie/${type}?language=en-US&page=${page}&api_key=${VITE_API_KEY}`
+      )
     ).json();
     return data;
   } catch (error) {
@@ -59,10 +39,10 @@ export async function getMovieSearch(keyword: string) {
   }
 }
 
-export const homeQuery = () => ({
-  queryKey: ["popular"],
+export const movieQuery = (type: string, page: number) => ({
+  queryKey: [type],
   queryFn: async () => {
-    const movies = await getPopularMovies();
+    const movies = await getMovies(type, page);
     if (!movies) {
       throw new Response("", {
         status: 404,
@@ -102,10 +82,10 @@ export const movieSearchQuery = (keyword: string) => ({
   },
 });
 
-export const upComingQuery = () => ({
+export const upComingQuery = (type: string, page: number) => ({
   queryKey: ["upcoming"],
   queryFn: async () => {
-    const movies = await getUpcomingMovies();
+    const movies = await getMovies(type, page);
     if (!movies) {
       throw new Response("", {
         status: 404,
@@ -116,10 +96,10 @@ export const upComingQuery = () => ({
   },
 });
 
-export const nowPlayingQuery = () => ({
+export const nowPlayingQuery = (type: string, page: number) => ({
   queryKey: ["nowplaying"],
   queryFn: async () => {
-    const movies = await getNowPlayingMovies();
+    const movies = await getMovies(type, page);
     if (!movies) {
       throw new Response("", {
         status: 404,

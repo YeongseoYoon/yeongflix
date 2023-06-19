@@ -1,10 +1,10 @@
-import { homeQuery } from "../../apis/api";
+import { movieQuery } from "../../apis/api";
 import { QueryClient } from "@tanstack/react-query";
 
-export const loader = (queryClient: QueryClient) => async () => {
-  const query = homeQuery();
+export const loader = (queryClient: QueryClient, page: number) => async () => {
+  const query = movieQuery("popular", page);
   return (
     queryClient.getQueryData(query.queryKey) ??
-    (await queryClient.fetchQuery(query))
+    (await queryClient.fetchInfiniteQuery(query))
   );
 };

@@ -63,4 +63,5 @@ interface SpokenLanguage {
 export default interface IAPIResponse {
   page: number;
   results: IMovie[];
+  total_pages: number;
 }

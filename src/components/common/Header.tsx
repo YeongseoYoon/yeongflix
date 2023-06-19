@@ -30,7 +30,7 @@ function Header() {
   const { scrollY } = useScroll();
 
   const popularMatch: PathMatch<string> | null = useMatch("/");
-  const nowPlayingMatch: PathMatch<string> | null = useMatch("/now-playing");
+  const nowPlayingMatch: PathMatch<string> | null = useMatch("/now_playing");
   const upComingMatch: PathMatch<string> | null = useMatch("/upcoming");
 
   const navAnimation = useAnimation();
@@ -66,7 +66,7 @@ function Header() {
             </Link>
           </Item>
           <Item>
-            <Link to="now-playing">
+            <Link to="now_playing">
               NOW PLAYING {nowPlayingMatch && <Circle layoutId="circle" />}
             </Link>
           </Item>

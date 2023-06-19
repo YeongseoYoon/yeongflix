@@ -70,3 +70,8 @@ export const cardVariants = {
     },
   },
 };
+
+export const ObserverContent = styled.div`
+  width: 1px;
+  height: 1px;
+`;

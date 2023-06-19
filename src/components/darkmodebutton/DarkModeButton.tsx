@@ -1,8 +1,8 @@
-import { useThemeContext } from "../../context/ThemeContext";
 import { faMoon, faSun } from "@fortawesome/free-solid-svg-icons";
 
-import { ButtonWrapper, ButtonIcon } from "./DarkModeButton.styled";
+import { useThemeContext } from "../../context/ThemeContext";
 
+import { ButtonWrapper, ButtonIcon } from "./DarkModeButton.styled";
 function DarkModeButton() {
   const { theme, toggleTheme } = useThemeContext();
 

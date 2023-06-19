@@ -18,19 +18,19 @@ const Router = createBrowserRouter([
       {
         index: true,
         element: <Home />,
-        loader: homeLoader(queryClient),
+        loader: homeLoader(queryClient, 1),
       },
 
       {
         path: "upcoming",
         element: <UpComing />,
-        loader: upComingLoader(queryClient),
+        loader: upComingLoader(queryClient, 1),
       },
 
       {
-        path: "now-playing",
+        path: "now_playing",
         element: <NowPlaying />,
-        loader: nowPlayingLoader(queryClient),
+        loader: nowPlayingLoader(queryClient, 1),
       },
 
       {

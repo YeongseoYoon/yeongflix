@@ -1,6 +1,7 @@
 import { AnimatePresence, useScroll } from "framer-motion";
-import { useQuery } from "@tanstack/react-query";
+import { InfiniteData, useQuery } from "@tanstack/react-query";
 import { SyntheticEvent, useState } from "react";
+import { useLocation } from "react-router-dom";
 
 import {
   Container,
@@ -11,22 +12,26 @@ import {
   containerVariants,
   cardVariants,
   CardWrapper,
+  ObserverContent,
 } from "./MovieList.styled";
 import makeImagePath from "../../utils/makeImagePath";
 import { IAPIResponse } from "../../types";
 import { IMovieDetail } from "../../types/types";
 import MovieDetailModal from "../moviedetailmodal/MovieDetailModal";
 import { movieDetailQuery } from "../../apis/api";
-import imgUrl from "../../assets/image/errorImg.png";
 
 interface IMovieListProps {
-  data: IAPIResponse;
+  data: InfiniteData<IAPIResponse>;
+  refProp: (node?: Element | null | undefined) => void;
 }
 
-function MovieList({ data: movies }: IMovieListProps) {
+function MovieList({ data, refProp }: IMovieListProps) {
   const { scrollY } = useScroll();
   const [isClicked, setIsClicked] = useState(false);
   const [movieId, setMovieId] = useState("");
+  const { pathname } = useLocation();
+
+  const errorImgUrl = new URL("/image/errorImg.png", import.meta.url).href;
 
   const { data: movieDetailData, isLoading } = useQuery<IMovieDetail>(
     movieDetailQuery(movieId)
@@ -38,46 +43,49 @@ function MovieList({ data: movies }: IMovieListProps) {
 
   const handleErrorImage = (event: SyntheticEvent<HTMLImageElement, Event>) => {
     event.currentTarget.onerror = null;
-    event.currentTarget.src = imgUrl;
+    event.currentTarget.src = errorImgUrl;
   };
   return (
     <Wrapper>
       <AnimatePresence>
-        {movies && (
+        {data && (
           <Container
             variants={containerVariants}
             initial="hidden"
             animate="visible"
           >
-            {movies?.results.map((movie) => (
-              <CardWrapper key={`${movie.id}-${movie.genre_ids}`}>
-                <Card
-                  layoutId={String(movie.id)}
-                  key={movie.id}
-                  variants={cardVariants}
-                  whileHover={{
-                    y: -20,
-                  }}
-                  onClick={() => handleBoxClicked(String(movie.id))}
-                >
-                  <CardImg
-                    alt={movie.title}
-                    src={makeImagePath(movie.poster_path, "w500")}
-                    onError={handleErrorImage}
-                  />
-                </Card>
-                <Title variants={cardVariants}>{movie.title}</Title>
-              </CardWrapper>
-            ))}
+            {data.pages.map((movies) =>
+              movies.results.map((movie) => (
+                <CardWrapper key={`${movie.id}-${movie.genre_ids}`}>
+                  <Card
+                    layoutId={`${String(movie.id)}-${pathname}`}
+                    key={movie.id}
+                    variants={cardVariants}
+                    whileHover={{
+                      y: -20,
+                    }}
+                    onClick={() => handleBoxClicked(String(movie.id))}
+                  >
+                    <CardImg
+                      alt={movie.title}
+                      src={makeImagePath(movie.poster_path, "w500")}
+                      onError={handleErrorImage}
+                    />
+                  </Card>
+                  <Title variants={cardVariants}>{movie.title}</Title>
+                </CardWrapper>
+              ))
+            )}
           </Container>
         )}
       </AnimatePresence>
-
+      <ObserverContent ref={refProp}></ObserverContent>
       {isClicked && !isLoading && movieDetailData ? (
         <MovieDetailModal
           movieDetailData={movieDetailData}
           setIsClicked={setIsClicked}
           scrollY={scrollY.get()}
+          pathname={pathname}
         />
       ) : null}
     </Wrapper>

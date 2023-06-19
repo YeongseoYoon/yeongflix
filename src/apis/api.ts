@@ -2,32 +2,12 @@ import { BASE_URL } from "../constants/constant";
 
 const { VITE_API_KEY } = import.meta.env;
 
-export async function getPopularMovies() {
+export async function getMovies(type: string, page: number = 1) {
   try {
     const data = await (
-      await fetch(`${BASE_URL}/movie/popular?api_key=${VITE_API_KEY}`)
-    ).json();
-    return data;
-  } catch (error) {
-    throw error;
-  }
-}
-
-export async function getNowPlayingMovies() {
-  try {
-    const data = await (
-      await fetch(`${BASE_URL}/movie/now_playing?api_key=${VITE_API_KEY}`)
-    ).json();
-    return data;
-  } catch (error) {
-    throw error;
-  }
-}
-
-export async function getUpcomingMovies() {
-  try {
-    const data = await (
-      await fetch(`${BASE_URL}/movie/upcoming?api_key=${VITE_API_KEY}`)
+      await fetch(
+        `${BASE_URL}/movie/${type}?language=en-US&include_adult=false&page=${page}&api_key=${VITE_API_KEY}`
+      )
     ).json();
     return data;
   } catch (error) {
@@ -46,11 +26,11 @@ export async function getMovieDetail(movieId: string) {
   }
 }
 
-export async function getMovieSearch(keyword: string) {
+export async function getMovieSearch(keyword: string, page: number = 1) {
   try {
     const data = await (
       await fetch(
-        `${BASE_URL}/search/movie?query=${keyword}&include_adult=false&language=en-US&api_key=${VITE_API_KEY}`
+        `${BASE_URL}/search/movie?query=${keyword}&language=en-US&include_adult=false&page=${page}&api_key=${VITE_API_KEY}`
       )
     ).json();
     return data;
@@ -59,10 +39,10 @@ export async function getMovieSearch(keyword: string) {
   }
 }
 
-export const homeQuery = () => ({
-  queryKey: ["popular"],
+export const movieQuery = (type: string, page: number) => ({
+  queryKey: [type],
   queryFn: async () => {
-    const movies = await getPopularMovies();
+    const movies = await getMovies(type, page);
     if (!movies) {
       throw new Response("", {
         status: 404,
@@ -99,33 +79,5 @@ export const movieSearchQuery = (keyword: string) => ({
       });
     }
     return movie;
-  },
-});
-
-export const upComingQuery = () => ({
-  queryKey: ["upcoming"],
-  queryFn: async () => {
-    const movies = await getUpcomingMovies();
-    if (!movies) {
-      throw new Response("", {
-        status: 404,
-        statusText: "Not Found",
-      });
-    }
-    return movies;
-  },
-});
-
-export const nowPlayingQuery = () => ({
-  queryKey: ["nowplaying"],
-  queryFn: async () => {
-    const movies = await getNowPlayingMovies();
-    if (!movies) {
-      throw new Response("", {
-        status: 404,
-        statusText: "Not Found",
-      });
-    }
-    return movies;
   },
 });

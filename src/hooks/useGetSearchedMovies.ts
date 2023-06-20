@@ -4,7 +4,7 @@ import { useInView } from "react-intersection-observer";
 import { IAPIResponse } from "../types";
 import { getMovieSearch } from "../apis/api";
 
-function useGetMovies(keyword: string) {
+function useGetSearchedMovies(keyword: string) {
   const { ref, inView } = useInView();
 
   const { data, fetchNextPage, hasNextPage, isFetched } =
@@ -31,4 +31,4 @@ function useGetMovies(keyword: string) {
   return { ref, data, isFetched };
 }
 
-export default useGetMovies;
+export default useGetSearchedMovies;

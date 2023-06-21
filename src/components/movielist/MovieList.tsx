@@ -36,6 +36,9 @@ function MovieList({ data, refProp }: IMovieListProps) {
   const { data: movieData, isLoading } = useQuery<IMovieDetail>(
     movieDetailQuery(movieId)
   );
+
+  const isModalVisible = isClicked && !isLoading && movieData;
+
   const handleBoxClicked = (id: string) => {
     setIsClicked((prev) => !prev);
     setMovieId(id);
@@ -84,7 +87,7 @@ function MovieList({ data, refProp }: IMovieListProps) {
         )}
       </AnimatePresence>
       <ObserverContent ref={refProp} />
-      {isClicked && !isLoading && movieData ? (
+      {isModalVisible ? (
         <MovieDetailModal
           data={movieData}
           handleModalClose={handleModalClose}

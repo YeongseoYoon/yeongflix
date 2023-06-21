@@ -21,7 +21,7 @@ import MovieDetailModal from "../moviedetailmodal/MovieDetailModal";
 import { movieDetailQuery } from "../../apis/api";
 
 interface IMovieListProps {
-  data: InfiniteData<IAPIResponse>;
+  data: InfiniteData<IAPIResponse> | undefined;
   refProp: (node?: Element | null | undefined) => void;
 }
 
@@ -33,7 +33,7 @@ function MovieList({ data, refProp }: IMovieListProps) {
 
   const errorImgUrl = new URL("/image/errorImg.png", import.meta.url).href;
 
-  const { data: movieDetailData, isLoading } = useQuery<IMovieDetail>(
+  const { data: movieData, isLoading } = useQuery<IMovieDetail>(
     movieDetailQuery(movieId)
   );
   const handleBoxClicked = (id: string) => {
@@ -54,8 +54,8 @@ function MovieList({ data, refProp }: IMovieListProps) {
             initial="hidden"
             animate="visible"
           >
-            {data.pages.map((movies) =>
-              movies.results.map((movie) => (
+            {data?.pages?.map((movies) =>
+              movies?.results?.map((movie) => (
                 <CardWrapper key={`${movie.id}-${movie.genre_ids}`}>
                   <Card
                     layoutId={`${String(movie.id)}-${pathname}`}
@@ -79,11 +79,11 @@ function MovieList({ data, refProp }: IMovieListProps) {
           </Container>
         )}
       </AnimatePresence>
-      <ObserverContent ref={refProp}></ObserverContent>
-      {isClicked && !isLoading && movieDetailData ? (
+      <ObserverContent ref={refProp} />
+      {isClicked && !isLoading && movieData ? (
         <MovieDetailModal
-          movieDetailData={movieDetailData}
-          setIsClicked={setIsClicked}
+          data={movieData}
+          handleModalClose={setIsClicked}
           scrollY={scrollY.get()}
           pathname={pathname}
         />

@@ -1,5 +1,5 @@
-import { movieQuery } from "../../apis/api";
 import { QueryClient } from "@tanstack/react-query";
+import { movieQuery } from "../../apis/api";
 
 export const loader = (queryClient: QueryClient, page: number) => async () => {
   const query = movieQuery("upcoming", page);

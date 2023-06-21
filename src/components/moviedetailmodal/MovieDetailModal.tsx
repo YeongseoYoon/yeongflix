@@ -1,6 +1,11 @@
-import { faCircleXmark } from "@fortawesome/free-solid-svg-icons";
-import { AnimatePresence } from "framer-motion";
 import { useEffect } from "react";
+import { AnimatePresence } from "framer-motion";
+import { faCircleXmark } from "@fortawesome/free-solid-svg-icons";
+
+import { IMovieDetail } from "../../types/types";
+import makeImagePath from "../../utils/makeImagePath";
+import formatRating from "../../utils/formatRating";
+import convertToDollarFormat from "../../utils/convertToDollarFormat";
 
 import {
   Overlay,
@@ -12,21 +17,17 @@ import {
   ModalOverView,
   Label,
 } from "./MovieDetailModal.styled";
-import { IMovieDetail } from "../../types/types";
-import makeImagePath from "../../utils/makeImagePath";
-import formatRating from "../../utils/formatRating";
-import convertToDollarFormat from "../../utils/convertToDollarFormat";
 
 interface IMovieDetailModalProp {
-  movieDetailData: IMovieDetail;
-  setIsClicked: React.Dispatch<React.SetStateAction<boolean>>;
+  data: IMovieDetail;
+  handleModalClose: React.Dispatch<React.SetStateAction<boolean>>;
   scrollY: number;
   pathname: string;
 }
 
 function MovieDetailModal({
-  movieDetailData,
-  setIsClicked,
+  data,
+  handleModalClose,
   scrollY,
   pathname,
 }: IMovieDetailModalProp) {
@@ -45,7 +46,7 @@ function MovieDetailModal({
   return (
     <AnimatePresence>
       <Overlay
-        onClick={() => setIsClicked((prev) => !prev)}
+        onClick={() => handleModalClose((prev) => !prev)}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
@@ -54,65 +55,62 @@ function MovieDetailModal({
         animate={{ opacity: 1 }}
         exit={{ opacity: 0, zIndex: 12 }}
         initial={{ opacity: 0 }}
-        layoutId={`${String(movieDetailData.id)}-${pathname}`}
-        key={movieDetailData.id}
+        layoutId={`${String(data.id)}-${pathname}`}
+        key={data.id}
         style={{ top: scrollY + 100 }}
       >
-        {movieDetailData && (
+        {data && (
           <>
             <ModalCover
               style={{
                 backgroundImage: `linear-gradient(to top, black, transparent), url(${makeImagePath(
-                  movieDetailData.backdrop_path,
+                  data.backdrop_path,
                   "w500"
                 )})`,
               }}
             >
               <CloseButton
                 icon={faCircleXmark}
-                onClick={() => setIsClicked((prev) => !prev)}
+                onClick={() => handleModalClose((prev) => !prev)}
               />
-              <ModalTitle>{movieDetailData.title}</ModalTitle>
+              <ModalTitle>{data.title}</ModalTitle>
             </ModalCover>
 
-            {!!movieDetailData.overview && (
-              <ModalOverView>{movieDetailData?.overview} </ModalOverView>
+            {!!data.overview && (
+              <ModalOverView>{data?.overview} </ModalOverView>
             )}
 
-            {!!movieDetailData.budget && (
+            {!!data.budget && (
               <ModalInformation>
                 <Label>💸Budget: </Label>
-                {convertToDollarFormat(movieDetailData.budget)}
+                {convertToDollarFormat(data.budget)}
               </ModalInformation>
             )}
 
-            {!!movieDetailData.revenue && (
+            {!!data.revenue && (
               <ModalInformation>
                 <Label>🍿Revenue: </Label>
-                {convertToDollarFormat(movieDetailData.revenue)}
+                {convertToDollarFormat(data.revenue)}
               </ModalInformation>
             )}
 
-            {!!movieDetailData.runtime && (
+            {!!data.runtime && (
               <ModalInformation>
-                <Label>🕛Runtime: </Label>{" "}
-                {movieDetailData.runtime + " minutes"}
+                <Label>🕛Runtime: </Label> {data.runtime + " minutes"}
               </ModalInformation>
             )}
 
-            {!!movieDetailData.vote_average && (
+            {!!data.vote_average && (
               <ModalInformation>
                 <Label>⭐Rating: </Label>
-                {formatRating(movieDetailData.vote_average)}
+                {formatRating(data.vote_average)}
               </ModalInformation>
             )}
 
-            {!!movieDetailData.homepage && (
+            {!!data.homepage && (
               <ModalInformation>
                 <Label>🏠Homepage: </Label>
-                <a href={movieDetailData.homepage}>
-                  {movieDetailData.homepage}
-                </a>
+                <a href={data.homepage}>{data.homepage}</a>
               </ModalInformation>
             )}
           </>

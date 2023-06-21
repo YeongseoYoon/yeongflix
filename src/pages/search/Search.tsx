@@ -5,9 +5,9 @@ import useGetSearchedMovies from "../../hooks/useGetSearchedMovies";
 
 const Search = () => {
   const location = useLocation();
-  const keyword = new URLSearchParams(location.search).get("keyword");
+  const keyword = new URLSearchParams(location.search).get("keyword") || "";
 
-  const { ref, data, isFetched } = useGetSearchedMovies(keyword || "");
+  const { ref, data, isFetched } = useGetSearchedMovies(keyword);
 
   return (
     <>
@@ -15,7 +15,7 @@ const Search = () => {
         data && data?.pages[0]?.results?.length > 0 ? (
           <MovieList data={data} refProp={ref} />
         ) : (
-          <EmptyResults keyword={keyword || ""} />
+          <EmptyResults keyword={keyword} />
         )
       ) : null}
     </>

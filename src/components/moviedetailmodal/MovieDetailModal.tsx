@@ -20,7 +20,7 @@ import {
 
 interface IMovieDetailModalProp {
   data: IMovieDetail;
-  handleModalClose: React.Dispatch<React.SetStateAction<boolean>>;
+  handleModalClose: React.MouseEventHandler<HTMLDivElement | SVGSVGElement>;
   scrollY: number;
   pathname: string;
 }
@@ -46,7 +46,7 @@ function MovieDetailModal({
   return (
     <AnimatePresence>
       <Overlay
-        onClick={() => handleModalClose((prev) => !prev)}
+        onClick={handleModalClose}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
@@ -69,10 +69,7 @@ function MovieDetailModal({
                 )})`,
               }}
             >
-              <CloseButton
-                icon={faCircleXmark}
-                onClick={() => handleModalClose((prev) => !prev)}
-              />
+              <CloseButton icon={faCircleXmark} onClick={handleModalClose} />
               <ModalTitle>{data.title}</ModalTitle>
             </ModalCover>
 

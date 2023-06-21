@@ -41,6 +41,10 @@ function MovieList({ data, refProp }: IMovieListProps) {
     setMovieId(id);
   };
 
+  const handleModalClose = () => {
+    setIsClicked(false);
+  };
+
   const handleErrorImage = (event: SyntheticEvent<HTMLImageElement, Event>) => {
     event.currentTarget.onerror = null;
     event.currentTarget.src = errorImgUrl;
@@ -83,7 +87,7 @@ function MovieList({ data, refProp }: IMovieListProps) {
       {isClicked && !isLoading && movieData ? (
         <MovieDetailModal
           data={movieData}
-          handleModalClose={setIsClicked}
+          handleModalClose={handleModalClose}
           scrollY={scrollY.get()}
           pathname={pathname}
         />

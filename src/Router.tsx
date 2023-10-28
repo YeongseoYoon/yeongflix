@@ -1,6 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 
-import Root from "./Root";
+import Root from "@/Root";
 import { ErrorBoundary } from "@/components";
 import { Home, NowPlaying, Search, UpComing } from "@/pages";
 import { loader as homeLoader } from "@/pages/home/loader";

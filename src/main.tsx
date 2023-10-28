@@ -8,7 +8,7 @@ import { GlobalStyle } from "@/GlobalStyle";
 import { queryClient } from "@/utils";
 import { ThemeProvider } from "@/context";
 
-import "./styles/reset.css";
+import "@/styles/reset.css";
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>

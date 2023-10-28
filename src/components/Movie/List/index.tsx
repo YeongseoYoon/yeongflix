@@ -37,7 +37,7 @@ function MovieList({ data, refProp }: IMovieListProps) {
     movieDetailQuery(movieId)
   );
 
-  const isModalVisible = isClicked && !isLoading && movieData;
+  const isModalVisible = isClicked && !isLoading && !!movieData;
 
   const handleBoxClicked = (id: string) => {
     setIsClicked((prev) => !prev);

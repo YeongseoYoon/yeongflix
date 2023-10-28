@@ -1,9 +1,9 @@
 import { useEffect } from "react";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { useInView } from "react-intersection-observer";
-import { IAPIResponse } from "../types";
-import { getMovies } from "../apis/api";
-import { TYPE_MODE } from "../constants/constant";
+import { IAPIResponse } from "@/types";
+import { getMovies } from "@/apis";
+import { TYPE_MODE } from "@/constants";
 
 function useGetMovies(type: TYPE_MODE) {
   const { ref, inView } = useInView();

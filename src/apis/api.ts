@@ -1,6 +1,4 @@
-import { BASE_URL } from "../constants/constant";
-
-import { VITE_API_KEY } from "../constants/constant";
+import { BASE_URL, VITE_API_KEY } from "@/constants";
 
 export async function getMovies(type: string, page: number = 1) {
   try {

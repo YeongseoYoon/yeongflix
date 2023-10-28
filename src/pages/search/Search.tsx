@@ -1,7 +1,6 @@
 import { useLocation } from "react-router";
-import { MovieList } from "../../components";
-import { EmptyResults } from "../../components";
-import useGetSearchedMovies from "../../hooks/useGetSearchedMovies";
+import { EmptyResult, MovieList } from "@/components";
+import { useGetSearchedMovies } from "@/hooks";
 
 const Search = () => {
   const location = useLocation();
@@ -15,7 +14,7 @@ const Search = () => {
         data && data?.pages[0]?.results?.length > 0 ? (
           <MovieList data={data} refProp={ref} />
         ) : (
-          <EmptyResults keyword={keyword} />
+          <EmptyResult keyword={keyword} />
         )
       ) : null}
     </>

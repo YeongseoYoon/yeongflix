@@ -1,2 +1,5 @@
-export type { default as IMovie } from "./types";
-export type { default as IAPIResponse } from "./types";
+export type {
+  default as IMovie,
+  default as IAPIResponse,
+  IMovieDetail,
+} from "./types";

@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { useInView } from "react-intersection-observer";
-import { IAPIResponse } from "../types";
-import { getMovieSearch } from "../apis/api";
+import { IAPIResponse } from "@/types";
+import { getMovieSearch } from "@/apis";
 
 function useGetSearchedMovies(keyword: string) {
   const { ref, inView } = useInView();

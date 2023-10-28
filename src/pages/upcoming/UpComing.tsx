@@ -1,5 +1,5 @@
-import MovieList from "../../components/Movie/List";
-import useGetMovies from "../../hooks/useGetMovies";
+import { MovieList } from "@/components";
+import { useGetMovies } from "@/hooks";
 
 const UpComing = () => {
   const { ref, data } = useGetMovies("upcoming");

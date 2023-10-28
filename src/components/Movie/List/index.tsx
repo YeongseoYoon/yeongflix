@@ -3,6 +3,11 @@ import { InfiniteData, useQuery } from "@tanstack/react-query";
 import { SyntheticEvent, useState } from "react";
 import { useLocation } from "react-router-dom";
 
+import { movieDetailQuery } from "@/apis";
+import { MovieDetailModal } from "@/components";
+import { makeImagePath } from "@/utils";
+import { IAPIResponse, IMovieDetail } from "@/types";
+
 import {
   Container,
   Card,
@@ -14,11 +19,6 @@ import {
   CardWrapper,
   ObserverContent,
 } from "./styled";
-import makeImagePath from "../../../utils/makeImagePath";
-import { IAPIResponse } from "../../../types";
-import { IMovieDetail } from "../../../types/types";
-import MovieDetailModal from "../DetailModal";
-import { movieDetailQuery } from "../../../apis/api";
 
 interface IMovieListProps {
   data: InfiniteData<IAPIResponse> | undefined;

@@ -1,6 +1,6 @@
 import { faMoon, faSun } from "@fortawesome/free-solid-svg-icons";
 
-import { useThemeContext } from "../../context/ThemeContext";
+import { useThemeContext } from "@/context";
 
 import { ButtonWrapper, ButtonIcon } from "./Button.styled";
 

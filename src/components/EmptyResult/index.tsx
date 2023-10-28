@@ -7,13 +7,13 @@ import {
   EmptyMessageContent,
   Keyword,
   Wrapper,
-} from "./EmptyResults.styled";
+} from "./styled";
 
 interface IMovieListProps {
   keyword: string;
 }
 
-function EmptyResults({ keyword }: IMovieListProps) {
+function EmptyResult({ keyword }: IMovieListProps) {
   return (
     <Wrapper>
       <Container>
@@ -31,4 +31,4 @@ function EmptyResults({ keyword }: IMovieListProps) {
   );
 }
 
-export default EmptyResults;
+export default EmptyResult;

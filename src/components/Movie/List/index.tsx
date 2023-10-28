@@ -13,12 +13,12 @@ import {
   cardVariants,
   CardWrapper,
   ObserverContent,
-} from "./MovieList.styled";
-import makeImagePath from "../../utils/makeImagePath";
-import { IAPIResponse } from "../../types";
-import { IMovieDetail } from "../../types/types";
-import MovieDetailModal from "../moviedetailmodal/MovieDetailModal";
-import { movieDetailQuery } from "../../apis/api";
+} from "./styled";
+import makeImagePath from "../../../utils/makeImagePath";
+import { IAPIResponse } from "../../../types";
+import { IMovieDetail } from "../../../types/types";
+import MovieDetailModal from "../DetailModal";
+import { movieDetailQuery } from "../../../apis/api";
 
 interface IMovieListProps {
   data: InfiniteData<IAPIResponse> | undefined;

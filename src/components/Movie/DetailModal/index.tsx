@@ -2,10 +2,10 @@ import { useEffect } from "react";
 import { AnimatePresence } from "framer-motion";
 import { faCircleXmark } from "@fortawesome/free-solid-svg-icons";
 
-import { IMovieDetail } from "../../types/types";
-import makeImagePath from "../../utils/makeImagePath";
-import formatRating from "../../utils/formatRating";
-import convertToDollarFormat from "../../utils/convertToDollarFormat";
+import { IMovieDetail } from "../../../types/types";
+import makeImagePath from "../../../utils/makeImagePath";
+import formatRating from "../../../utils/formatRating";
+import convertToDollarFormat from "../../../utils/convertToDollarFormat";
 
 import {
   Overlay,
@@ -16,7 +16,7 @@ import {
   CloseButton,
   ModalOverView,
   Label,
-} from "./MovieDetailModal.styled";
+} from "./styled";
 
 interface IMovieDetailModalProp {
   data: IMovieDetail;

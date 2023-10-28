@@ -1,4 +1,4 @@
-import MovieList from "../../components/movielist/MovieList";
+import MovieList from "../../components/Movie/List";
 import useGetMovies from "../../hooks/useGetMovies";
 
 const UpComing = () => {

@@ -20,7 +20,7 @@ import {
   Nav,
   Search,
   SearchButton,
-} from "./Header.styled";
+} from "./styled";
 
 interface IForm {
   keyword: string;

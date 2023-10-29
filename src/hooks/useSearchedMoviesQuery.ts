@@ -1,17 +1,18 @@
 import { useEffect } from "react";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { useInView } from "react-intersection-observer";
-import { IAPIResponse } from "@/types";
-import { getMovieSearch } from "@/apis";
 
-function useGetSearchedMovies(keyword: string) {
+import { IAPIResponse } from "@/types";
+import { movieService } from "@/services";
+
+const useSearchedMoviesQuery = (keyword: string) => {
   const { ref, inView } = useInView();
 
   const { data, fetchNextPage, hasNextPage, isFetched } =
     useInfiniteQuery<IAPIResponse>(
       ["movieSearch", keyword],
       async ({ pageParam = 1 }) => {
-        return await getMovieSearch(keyword, pageParam);
+        return await movieService.fetchSearchedMovies(keyword, pageParam);
       },
       {
         getNextPageParam: (lastPage) => {
@@ -29,6 +30,6 @@ function useGetSearchedMovies(keyword: string) {
     }
   }, [inView]);
   return { ref, data, isFetched };
-}
+};
 
-export default useGetSearchedMovies;
+export default useSearchedMoviesQuery;

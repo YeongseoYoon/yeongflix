@@ -1,17 +1,24 @@
 import { useEffect } from "react";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { useInView } from "react-intersection-observer";
-import { IAPIResponse } from "@/types";
-import { getMovies } from "@/apis";
-import { TYPE_MODE } from "@/constants";
 
-function useGetMovies(type: TYPE_MODE) {
+import { IAPIResponse } from "@/types";
+
+import { TYPE_MODE } from "@/constants";
+import { movieService } from "@/services";
+
+export const moviesQuery = (type: string, page: number) => ({
+  queryKey: [type],
+  queryFn: () => movieService.fetchMovies(type, page),
+});
+
+const useMoviesQuery = (type: TYPE_MODE) => {
   const { ref, inView } = useInView();
 
   const { data, fetchNextPage, hasNextPage } = useInfiniteQuery<IAPIResponse>(
     [type],
     async ({ pageParam = 1 }) => {
-      return await getMovies(type, pageParam);
+      return await movieService.fetchMovies(type, pageParam);
     },
     {
       getNextPageParam: (lastPage) => {
@@ -29,6 +36,6 @@ function useGetMovies(type: TYPE_MODE) {
     }
   }, [inView]);
   return { ref, data };
-}
+};
 
-export default useGetMovies;
+export default useMoviesQuery;

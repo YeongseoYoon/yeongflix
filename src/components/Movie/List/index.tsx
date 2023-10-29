@@ -1,12 +1,11 @@
 import { AnimatePresence, useScroll } from "framer-motion";
-import { InfiniteData, useQuery } from "@tanstack/react-query";
+import { InfiniteData } from "@tanstack/react-query";
 import { SyntheticEvent, useState } from "react";
 import { useLocation } from "react-router-dom";
 
-import { movieDetailQuery } from "@/apis";
 import { MovieDetailModal } from "@/components";
 import { makeImagePath } from "@/utils";
-import { IAPIResponse, IMovieDetail } from "@/types";
+import { IAPIResponse } from "@/types";
 
 import {
   Container,
@@ -19,6 +18,7 @@ import {
   CardWrapper,
   ObserverContent,
 } from "./styled";
+import useMovieDetailQuery from "@/hooks/useMovieDetailQuery";
 
 interface IMovieListProps {
   data: InfiniteData<IAPIResponse> | undefined;
@@ -33,9 +33,7 @@ function MovieList({ data, refProp }: IMovieListProps) {
 
   const errorImgUrl = new URL("/image/errorImg.png", import.meta.url).href;
 
-  const { data: movieData, isLoading } = useQuery<IMovieDetail>(
-    movieDetailQuery(movieId)
-  );
+  const { movieData, isLoading } = useMovieDetailQuery(movieId);
 
   const isModalVisible = isClicked && !isLoading && !!movieData;
 

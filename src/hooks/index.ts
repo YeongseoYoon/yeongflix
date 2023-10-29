@@ -1,3 +1,3 @@
-export { default as useGetMovies } from "./useGetMovies";
-export { default as useGetSearchedMovies } from "./useGetSearchedMovies";
+export { default as useMoviesQuery, moviesQuery } from "./useMoviesQuery";
+export { default as useSearchedMoviesQuery } from "./useSearchedMoviesQuery";
 export { default as useScrollToTop } from "./useScrollToTop";

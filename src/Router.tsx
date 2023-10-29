@@ -2,10 +2,15 @@ import { createBrowserRouter } from "react-router-dom";
 
 import Root from "@/Root";
 import { ErrorBoundary } from "@/components";
-import { Home, NowPlaying, Search, UpComing } from "@/pages";
-import { loader as homeLoader } from "@/pages/home/loader";
-import { loader as upComingLoader } from "@/pages/nowplaying/loader";
-import { loader as nowPlayingLoader } from "@/pages/upcoming/loader";
+import {
+  Home,
+  NowPlaying,
+  Search,
+  UpComing,
+  homeLoader,
+  nowPlayingLoader,
+  upComingLoader,
+} from "@/pages";
 
 import { queryClient } from "@/utils";
 import { ROUTE_PATH } from "@/constants";

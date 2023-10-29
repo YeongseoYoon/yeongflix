@@ -1,7 +1,3 @@
-export {
-  getMovies,
-  getMovieDetail,
-  getMovieSearch,
-  movieQuery,
-  movieDetailQuery,
-} from "./api";
+export { HttpClient, httpclient } from "./httpClient";
+
+export { API_BASE_URL } from "./config";

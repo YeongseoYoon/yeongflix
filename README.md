@@ -250,13 +250,14 @@ import {
 import { useThemeContext } from "@/context";
 
 import { ButtonWrapper, ButtonIcon } from "./Button.styled";
+import { THEMES } from "@/constants";
 
 function DarkModeButton() {
   const { theme, toggleTheme } = useThemeContext();
 
   return (
     <ButtonWrapper onClick={toggleTheme}>
-      <ButtonIcon icon={theme === "DARK" ? lightModeIcon : darkModeIcon} />
+      <ButtonIcon icon={theme === THEMES.DARK ? lightModeIcon : darkModeIcon} />
     </ButtonWrapper>
   );
 }
@@ -272,18 +273,20 @@ interface IThemeContext {
 }
 
 export const ThemeContext = createContext<IThemeContext>({
-  theme: "LIGHT",
+  theme: THEMES.LIGHT,
   toggleTheme: () => {},
 });
 
-export const ThemeProvider = ({ children }: React.PropsWithChildren<{}>) => {
-  const [theme, setTheme] = useState<THEME_MODE>("LIGHT");
+export const ThemeProvider = ({ children }: { children: ReactNode }) => {
+  const [theme, setTheme] = useState<THEME_MODE>(THEMES.LIGHT);
 
   const toggleTheme = () => {
-    setTheme((prevTheme) => (prevTheme === "LIGHT" ? "DARK" : "LIGHT"));
+    setTheme((prevTheme) =>
+      prevTheme === THEMES.LIGHT ? THEMES.DARK : THEMES.LIGHT
+    );
   };
 
-  const themeObject = theme === "LIGHT" ? lightTheme : darkTheme;
+  const themeObject = theme === THEMES.LIGHT ? lightTheme : darkTheme;
 
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme }}>
@@ -299,8 +302,11 @@ export const useThemeContext = (): IThemeContext => useContext(ThemeContext);
 
 ```ts
 //constants.ts
-export const THEMES = ["LIGHT", "DARK"] as const;
-export type THEME_MODE = (typeof THEMES)[number];
+export const THEMES = {
+  LIGHT: "LIGHT",
+  DARK: "DARK",
+} as const;
+export type THEME_MODE = (typeof THEMES)[keyof typeof THEMES];
 ```
 
 <img src="https://github.com/wanted-internship-12-9/boiler-plate/assets/86523545/e448d2d6-672b-44aa-bbeb-a5971afaf338"/>

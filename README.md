@@ -121,7 +121,7 @@ VITE_API_KEY = //TMDB에서 발급 받은 API 키
   - 코드의 횡단 관심사를 분리하여 로직을 더욱 깔끔하게 만들고자 했습니다.. 리팩토링을 하면서 httpClient가 분리되어 있지 않았을 경우, API 요청 사양이 변경된다면 유지보수가 어려워진다는 것을 깨닫게 되었습니다.
   - 또한, 이전에는 API 요청과 비즈니스 로직이 강하게 결합되어 있었기 때문에, API 호출 오류의 경우 모든 API 요청 함수에서 중복된 코드로 처리되고 있었습니다. 그러나 httpClient를 분리함으로써, 추후에 에러 처리 방법을 변경해야 할 경우 중복 작업을 피할 수 있을 것으로 예상했습니다.
 
-```
+```ts
 //httpClient.ts
 import { API_BASE_URL } from "./config";
 
@@ -158,7 +158,6 @@ export class HttpClient {
 }
 
 export const httpclient = new HttpClient(API_BASE_URL);
-
 ```
 
 ```ts

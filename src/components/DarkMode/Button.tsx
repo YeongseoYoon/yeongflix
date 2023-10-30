@@ -1,4 +1,7 @@
-import { faMoon, faSun } from "@fortawesome/free-solid-svg-icons";
+import {
+  faMoon as darkModeIcon,
+  faSun as lightModeIcon,
+} from "@fortawesome/free-solid-svg-icons";
 
 import { useThemeContext } from "@/context";
 
@@ -9,7 +12,7 @@ function DarkModeButton() {
 
   return (
     <ButtonWrapper onClick={toggleTheme}>
-      <ButtonIcon icon={theme === "DARK" ? faSun : faMoon} />
+      <ButtonIcon icon={theme === "DARK" ? lightModeIcon : darkModeIcon} />
     </ButtonWrapper>
   );
 }

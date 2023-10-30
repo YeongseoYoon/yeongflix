@@ -6,13 +6,14 @@ import {
 import { useThemeContext } from "@/context";
 
 import { ButtonWrapper, ButtonIcon } from "./Button.styled";
+import { THEMES } from "@/constants";
 
 function DarkModeButton() {
   const { theme, toggleTheme } = useThemeContext();
 
   return (
     <ButtonWrapper onClick={toggleTheme}>
-      <ButtonIcon icon={theme === "DARK" ? lightModeIcon : darkModeIcon} />
+      <ButtonIcon icon={theme === THEMES.DARK ? lightModeIcon : darkModeIcon} />
     </ButtonWrapper>
   );
 }

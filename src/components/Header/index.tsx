@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   Link,
   NavigateFunction,
@@ -7,12 +8,13 @@ import {
 } from "react-router-dom";
 import { useAnimation, useMotionValueEvent, useScroll } from "framer-motion";
 import { useForm } from "react-hook-form";
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import { faSearch, faBars, faX } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import {
   Circle,
   Col,
+  Hamburger,
   Input,
   Item,
   Items,
@@ -28,7 +30,7 @@ interface IForm {
 
 function Header() {
   const { scrollY } = useScroll();
-
+  const [isMenuOpen, setMenuOpen] = useState(false);
   const popularMatch: PathMatch<string> | null = useMatch("/");
   const nowPlayingMatch: PathMatch<string> | null = useMatch("/now_playing");
   const upComingMatch: PathMatch<string> | null = useMatch("/upcoming");
@@ -54,7 +56,7 @@ function Header() {
           <Link to="/">YeongFlix</Link>
         </Logo>
 
-        <Items>
+        <Items isMenuOpen={isMenuOpen}>
           <Item>
             <Link to="/">
               POPULAR {popularMatch && <Circle layoutId="circle" />}
@@ -82,6 +84,13 @@ function Header() {
             <FontAwesomeIcon icon={faSearch}></FontAwesomeIcon>
           </SearchButton>
         </Search>
+        <Hamburger onClick={() => setMenuOpen(!isMenuOpen)}>
+          {isMenuOpen ? (
+            <FontAwesomeIcon icon={faX} />
+          ) : (
+            <FontAwesomeIcon icon={faBars} />
+          )}
+        </Hamburger>
       </Col>
     </Nav>
   );

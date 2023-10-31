@@ -1,25 +1,29 @@
 import styled from "styled-components";
 import { motion } from "framer-motion";
 
-export const Nav = styled(motion.nav)`
+export const Nav = styled(motion.nav)<{ isMenuOpen?: boolean }>`
   display: flex;
   justify-content: space-between;
   align-items: center;
   position: fixed;
   width: 100%;
   top: 0;
-  font-size: 14px;
-  padding: 10px 60px;
   color: white;
   background-color: ${({ theme }) => theme.background};
   z-index: 12;
+  @media (max-width: 768px) {
+    padding: ${(props) => (props.isMenuOpen ? "10px 0px" : "")};
+    margin: ${(props) => (props.isMenuOpen ? "40px 0px" : "")};
+  }
 `;
 export const Col = styled.div`
   display: flex;
   align-items: center;
+  margin: 10px 10px;
 `;
 export const Logo = styled(motion.h2)`
   margin-right: 50px;
+  margin-left: 20px;
   font-size: 40px;
   font-family: "Darumadrop One", cursive;
   color: ${({ theme }) => theme.text};
@@ -38,12 +42,34 @@ export const SearchButton = styled.button`
   height: 25px;
 `;
 
-export const Items = styled.ul`
+export const Hamburger = styled.div`
+  display: none;
+  @media (max-width: 768px) {
+    display: block;
+    margin: 0px 10px;
+    color: ${({ theme }) => theme.text};
+    cursor: pointer;
+    z-index: 1200;
+  }
+`;
+export const Items = styled.ul<{ isMenuOpen: boolean }>`
   display: flex;
   align-items: center;
+  gap: 20px;
+  @media (max-width: 768px) {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    flex-direction: column;
+    display: ${(props) => (props.isMenuOpen ? "flex" : "none")};
+    color: ${(props) => (props.isMenuOpen ? "black" : "white")};
+    background-color: ${({ theme }) => theme.background};
+    width: 100%;
+    gap: 20px;
+    z-index: 1000;
+  }
 `;
 export const Item = styled.li`
-  margin-right: 20px;
   transition: color 0.1s ease-in-out;
   position: relative;
   display: flex;
@@ -52,6 +78,12 @@ export const Item = styled.li`
   color: ${({ theme }) => theme.text};
   &:hover {
     color: ${({ theme }) => theme.accent};
+  }
+  @media (max-width: 768px) {
+    margin: 10px 0px;
+    padding: 5px 0px;
+    width: 100%;
+    text-align: center;
   }
 `;
 

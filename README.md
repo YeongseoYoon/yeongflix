@@ -337,6 +337,12 @@ const handleErrorImage = (event: SyntheticEvent<HTMLImageElement, Event>) => {
 
 ## 5. 기타 사항
 
+- 반응형 헤더를 구현했습니다.
+
+  |                                                width > 768px                                                |                                               width <= 768px                                                |                                    width <= 768px && 햄버거 버튼 클릭 시                                    |
+  | :---------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------: |
+  | <img src="https://github.com/YeongseoYoon/yeongflix/assets/86523545/6c54a8e8-6c31-472b-875f-adf920bf288b"/> | <img src="https://github.com/YeongseoYoon/yeongflix/assets/86523545/6402751b-35c8-4e92-a0f1-bcef9b436ab2"/> | <img src="https://github.com/YeongseoYoon/yeongflix/assets/86523545/32f34785-945a-4e2b-95da-142326c3dcf3"/> |
+
 - 모달 뒤 스크롤을 막아 사용자의 시선이 모달에만 집중되도록 했습니다.
 
 ```ts
